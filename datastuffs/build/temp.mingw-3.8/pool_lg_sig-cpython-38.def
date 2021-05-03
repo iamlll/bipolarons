@@ -1,0 +1,3 @@
+LIBRARY pool_lg_sig-cpython-38.dll
+EXPORTS
+PyInit_pool_lg_sig

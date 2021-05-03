@@ -1,0 +1,3 @@
+LIBRARY baby_integrand-cpython-38.dll
+EXPORTS
+PyInit_baby_integrand

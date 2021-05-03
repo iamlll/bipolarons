@@ -1,0 +1,3 @@
+LIBRARY baby_integral-cpython-38.dll
+EXPORTS
+PyInit_baby_integral

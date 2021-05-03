@@ -1,0 +1,3 @@
+LIBRARY nagano_cy-cpython-38.dll
+EXPORTS
+PyInit_nagano_cy

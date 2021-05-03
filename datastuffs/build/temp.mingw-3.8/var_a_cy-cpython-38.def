@@ -1,0 +1,3 @@
+LIBRARY var_a_cy-cpython-38.dll
+EXPORTS
+PyInit_var_a_cy

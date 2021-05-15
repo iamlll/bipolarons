@@ -63,7 +63,7 @@ if __name__ == '__main__':
     
     #range of Us for eta=0 to compare E_inf behavior with 2*single polaron behavior (as fn of alpha)
     ns=[0.]
-    Us = np.linspace(1E-3,20,100)
+    Us = np.linspace(1E-3,40,100)
 
     #csvname = "./data/asym_U1_v2.csv"
     #csvname = "./data/nagano.csv"

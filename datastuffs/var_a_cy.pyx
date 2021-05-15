@@ -1,6 +1,7 @@
 import numpy as np
 cimport numpy as np
 from scipy import integrate
+from scipy.special.cython_special import erfcx
 from scipy.optimize import minimize, basinhopping,shgo
 import baby_integrand as bby
 from libc.math cimport isinf, fabs, sqrt, pi, exp, sin, pow, erf, erfc
@@ -29,7 +30,7 @@ def integral_inf(double b,double c):
 
 def integral_sing_inf(double b, double c):
     cdef tuple integral = integrate.fixed_quad(bby.integrand_sing_inf,0,10,n=50, args=(b,c))
-    cdef double val = erfc(sqrt(b))*exp(b)
+    cdef double val = erfcx(sqrt(b))
     if isinf(val) == 1:
         return integral[0]
     else:

@@ -661,7 +661,7 @@ if __name__ == "__main__":
     #FitPolaronData
     #Plot_vs_Alpha(filename,opt=2,save=False)
 
-    PlotAtFixedVal(filename, ['y_opt','E_opt'], 'eta', [eta_STO], logplot=0,save = False)
+    #PlotAtFixedVal(filename, ['y_opt','E_opt'], 'eta', [eta_STO], logplot=0,save = False)
     #PlotAtFixedVal(filename, ['eta','E_opt','E_inf'], 'U', [U_STO], savetype='eps',logplot=0,save = False)
     #PlotAtFixedVal(filename, ['U','a_opt'], 'eta', [0,0.1,0.2,0.5], logplot=2,save = True)
     #PlotAtFixedVal(filename, ['alpha','E_inf','Einf_ana'], 'eta', [0], logplot=0,save = False)
@@ -674,7 +674,7 @@ if __name__ == "__main__":
     #plotContour(filename,['eta','U','E_opt'],point=True,minmax=3,suffix='_phasedia.eps',logplot=0,save=False,zero=False,dcont=False)
     #plotContour(filename,['eta','U','E_inf'],point=True,minmax=5,suffix='_phasedia.eps',logplot=0,save=False,zero=True,dcont=True)
     #plotContour(filename,['eta','U','E_binding'],point=True,xlims=(0,0.2),ylims=(1E-5,13),minmax=1,suffix='_phasedia.png',logplot=0,save=True,zero=False,dcont=True)
-    #plotContour(filename,['eta','U','E_binding'],xlims=(0,0.2),point=True,minmax=1, save=False,suffix='_zoom.eps',zero=True,dcont=True)
+    plotContour(filename,['eta','U','E_binding'],logplot=1,point=False,minmax=1, save=False,suffix='_zoom.eps',zero=False,dcont=False)
     #plotContour(filename,['eta','U','E_opt'],xlims=(0,0.2),point=False,minmax=2, save=True,suffix='_EoptPD',zero=False, dcont=True)
     #plotContour(filename,['eta','U','y_opt'],suffix='_yoptPD.png',save=True,point=False,dcont=True,minmax=2)
     #plotContour(filename,['eta','U','s_opt'],suffix='_soptPD.png',save=True,point=False,dcont=True,minmax=2)

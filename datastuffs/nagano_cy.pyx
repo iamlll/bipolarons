@@ -2,7 +2,7 @@ import numpy as np
 cimport numpy as np
 from scipy import integrate
 from scipy.optimize import minimize
-from libc.math cimport fabs, sqrt, pi, exp, sin, cos, pow, erf, atan, log
+from libc.math cimport fabs, sqrt, pi, exp, sin, cos, pow, erf, atan, log, floor, atan2, tan
 #from libc.complex cimport cexp
 import warnings
 cimport scipy.special.cython_special as cy_scipy
@@ -179,17 +179,47 @@ def Integral_ln_inf(double y, double s, double a, double z_c, int option):
 
     cdef double integral
     if option == 1: #For a < a_c
-        return mpm.quad(lambda x,u: Integrand1(u,x,y,s,a),[0,z_c],[-1,1])
+        return 2*mpm.quad(lambda x,u: Integrand1(u,x,y,s,a),[0,z_c],[0,1])
+        #return mpm.quad(lambda x,u: Integrand1(u,x,y,s,a),[0,z_c],[-1,1])
     elif option == 2: #For a_c <= a < 1
         return integrate.quad(Integrand2, z_c, np.inf, args=(y,s,a))[0] 
     elif option == 3: #For a=1
-        return mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[-1,1])
+        return 2*mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[0,1])
+        #return mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[-1,1])
     else: return 0.
+
+def TestEnv(double y, double s, double a, int option):
+    def Integrand(double u, double x, double y, double s, double a):
+        cdef double numer = exp(-pow(1-a,2)*pow(x,2)/4) * cos((1-a)/2* y*x*u) + exp(-(1+pow(a,2))*pow(x,2)/4) * cos((1+a)/2* y*x*u)
+        cdef double denom = 1 + pow(a*x,2)* exp(-2*s) + exp(-pow(a*x,2)/2) * cos(a*y*x*u)
+        return pow(numer,2)/denom
+    def Envelope(double x, double s, double a):
+        return pow(exp(-pow(1-a,2)*pow(x,2)/4) + exp(-(1+pow(a,2))*pow(x,2)/4) ,2)/ (1 + pow(a*x,2)* exp(-2*s) + exp(-pow(a*x,2)/2) )
+    #for a=1, replace angular integral by 0.5*(env + integrand|_{u=2pi/(1+a)})?
+    def kIntegrand_a1(double x, double s):
+        return 0.5*(pow(1 + exp(-pow(x,2)/2) ,2)/ (1 + pow(x,2)* exp(-2*s) + exp(-pow(x,2)/2) ) + pow(1 - exp(-pow(x,2)/2) ,2)/ (1 + pow(x,2)* exp(-2*s) - exp(-pow(x,2)/2) ))   
+    if option == 1: return mpm.quad(lambda x,u: Integrand(u,x,y,s,a),[0,np.inf],[0,1])
+    elif option == 2: return integrate.quad(Envelope, 0, np.inf, args=(s,a))[0]
+    else: return integrate.quad(kIntegrand_a1,0,np.inf,args=(s,))[0]
+
+def zIntegrand(double z, double y, double s, double a, int option):
+    cdef double A = (1-exp(-0.5*pow(a*z,2)) + pow(a*z,2)*exp(-2*s)) / sqrt(1-exp(-pow(a*z,2)) + 2*pow(a*z,2)*exp(-2*s) + pow(a*z,4)*exp(-4*s))
+    cdef double B = 0.5*a*y*z
+    cdef double trig = pi* floor(z*B/pi) + atan2(1, 1/(A*tan(B))) #replaces arctan(A*tan(B))
+    return exp(-0.5*(1-a)*pow(z,2)) + (exp(-pow(1-a,2)*pow(z,2)/2) + exp(-(1+pow(a,2))*pow(z,2)/2) + 2*exp(-0.5*(1-a)*pow(z,2)) * (1+pow(a*z,2)*exp(-2*s)) ) / (a*y*z* sqrt(1-exp(-pow(a*z,2)) + 2*pow(a*z,2)*exp(-2*s) + pow(a*z,4)*exp(-4*s))) * trig
+
+def TestZInt(double y, double s, double a, double n, double U, double z_c):
+    def Integrand(double z, double y, double s, double a):
+        cdef double A = (1-exp(-0.5*pow(a*z,2)) + pow(a*z,2)*exp(-2*s)) / sqrt(1-exp(-pow(a*z,2)) + 2*pow(a*z,2)*exp(-2*s) + pow(a*z,4)*exp(-4*s))
+        cdef double B = 0.5*a*y*z
+        cdef double trig = pi* floor(z*B/pi) + atan2(1, 1/(A*tan(B))) #replaces arctan(A*tan(B))
+        return exp(-0.5*(1-a)*pow(z,2)) + (exp(-pow(1-a,2)*pow(z,2)/2) + exp(-(1+pow(a,2))*pow(z,2)/2) + 2*exp(-0.5*(1-a)*pow(z,2)) * (1+pow(a*z,2)*exp(-2*s)) ) / (a*y*z* sqrt(1-exp(-pow(a*z,2)) + 2*pow(a*z,2)*exp(-2*s) + pow(a*z,4)*exp(-4*s))) * trig
+    return -2*(1-n)*U*exp(-s)/pi* mpm.quad(lambda z: Integrand(z,y,s,a),[0,np.inf])
 
 def Eph_inf_ln(double s, double a, double y, double n, double U, double z_c, double a_c):
     if a == 0.: 
         return -(1-n)*U*exp(-s) * (sqrt(2/pi) + 1/y) 
-    if (a>0 and a < a_c): return -(1-n)*U* exp(-s)/pi * Integral_ln_inf(y,s,a, 1E4,1) 
+    elif (a>0 and a < a_c): return -(1-n)*U* exp(-s)/pi * Integral_ln_inf(y,s,a, np.inf,1) 
     elif (a_c <= a and a < 1): return -(1-n)*U* exp(-s)/pi* (Integral_ln_inf(y,s, a, z_c,1) + Integral_ln_inf(y, s,a,z_c,2))
     else: return - (1-n)*U * (1- 2*atan(z_c* exp(-s))/pi + exp(-s)/pi * Integral_ln_inf(y,s, 1.,z_c,3)) 
 
@@ -216,11 +246,31 @@ def min_E_afix_inf(tuple args):
     cdef double a_c = args[3]
     cdef double a = args[4]
     cdef double y = 500.
-    cdef tuple bnds = ((-1,5),) #s
-    cdef np.ndarray[double, ndim=1] guess = np.array([1.])
-    res = minimize(E_afix_inf,guess,args=(a,y,n,u, z_c, a_c),bounds=bnds)
-    cdef double Einf = E_afix_inf(res.x,a,y,n,u,z_c, a_c)
-    return n,u,a, exp(res.x[0]),y,Einf
+    cdef tuple bnds = ((-2.5,0),) #s
+    cdef np.ndarray[double, ndim=1] guess = np.array([-1.])
+    if (1-n)*u/2 > 9.5:
+        bnds = ((-2.5,-0.5),) #s
+        if (1-n)*u/2 > 15 and (1-n)*u/2 < 25:
+            guess = np.array([-2.])
+        elif (1-n)*u/2 >= 25:
+            bnds = ((-5,-2),) #s
+            guess = np.array([-4.]) #s
+        res = minimize(E_afix_inf,guess,args=(a,y,n,u, z_c, a_c),bounds=bnds)
+        return n,u,a,exp(res.x[0]),y,E_afix_inf(res.x,a,y,n,u,z_c, a_c)
+    elif (1-n)*u/2 < 7:
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c, a_c),bounds=bnds)
+        return n,u,1.,exp(res.x[0]),y,E_afix_inf(res.x,1.,y,n,u,z_c, a_c)
+    else: #near the 1st order transition from weak/strong coupling
+        res = minimize(E_afix_inf,guess,args=(a,y,n,u, z_c, a_c),bounds=bnds)
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res2 = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c,a_c),bounds=bnds)
+        if E_afix_inf(res.x,a,y,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,y,n,u,z_c, a_c): 
+            return n,u,1.,exp(res2.x[0]),y,E_afix_inf(res2.x,1.,y,n,u,z_c, a_c)
+        else:
+            return n,u,a, exp(res.x[0]),y,E_afix_inf(res.x,a,y,n,u,z_c, a_c)
 
 #Treat a as a variational parameter
 def E_avar_inf(np.ndarray[double, ndim=1] x, double y, double n, double U, double z_c, double a_c):
@@ -239,26 +289,67 @@ def min_E_avar_inf(tuple args):
     cdef double u = args[1]
     cdef double z_c = args[2]
     cdef double a_c = args[3]
-    cdef double y = 500.
-    cdef tuple bnds = ((-1,3),(0,1),) #s,a
-    cdef np.ndarray[double, ndim=1] guess = np.array([-1.,0.001])
-    if (1-n)*u/2 > 9:
+    cdef double y = args[4]
+    cdef tuple bnds = ((-2.5,0),(0,1),) #s,a
+    cdef np.ndarray[double, ndim=1] guess = np.array([-1.,0.002])
+    if (1-n)*u/2 > 9.5:
+        bnds = ((-2.5,-0.5),(0,1),) #s,a
+        guess = np.array([-1,0.001])
+        if (1-n)*u/2 > 15 and (1-n)*u/2 < 25:
+            guess = np.array([-2.,1E-4])
+        elif (1-n)*u/2 >= 25:
+            bnds = ((-5,-2),(0,0.3),) #s, a
+            guess = np.array([-4.,0.]) #s, a
         res = minimize(E_avar_inf,guess,args=(y,n,u, z_c, a_c),bounds=bnds)
         return n,u,res.x[1], exp(res.x[0]),y,E_avar_inf(res.x,y,n,u,z_c, a_c)
-    elif (1-n)*u/2 < 7.5:
+    elif (1-n)*u/2 < 7:
         bnds = ((2,5),) #s
         guess = np.array([5.])
         res = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c, a_c),bounds=bnds)
         return n,u,1.,exp(res.x[0]),y,E_afix_inf(res.x,1.,y,n,u,z_c, a_c)
     else: #near the 1st order transition from weak/strong coupling
         res = minimize(E_avar_inf,guess,args=(y,n,u, z_c, a_c),bounds=bnds)
-        bnds = ((2,5),) #y,s
+        bnds = ((2,5),) #s
         guess = np.array([5.])
         res2 = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c,a_c),bounds=bnds)
         if E_avar_inf(res.x,y,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,y,n,u,z_c, a_c): 
             return n,u,1.,exp(res2.x[0]),y,E_afix_inf(res2.x,1.,y,n,u,z_c, a_c)
         else:
             return n,u,res.x[1], exp(res.x[0]),y,E_avar_inf(res.x,y,n,u,z_c, a_c)
+
+def min_E_inf(tuple args):
+    '''Minimize energy in Nagano formulation while fixing a to be either 0 or 1 (this is what various E(a) plots seem to indicate), fixed y-> infty'''
+    cdef double n = args[0]
+    cdef double u = args[1]
+    cdef double z_c = args[2]
+    cdef double a_c = args[3]
+    cdef double y = args[4]
+    cdef tuple bnds = ((-2.5,0),) #s
+    cdef np.ndarray[double, ndim=1] guess = np.array([-1.])
+    if (1-n)*u/2 > 9.5:
+        bnds = ((-2.5,-0.5),) #s
+        guess = np.array([-1.])
+        if (1-n)*u/2 > 15 and (1-n)*u/2 < 25:
+            guess = np.array([-2.])
+        elif (1-n)*u/2 >= 25:
+            bnds = ((-5,-2),) #s
+            guess = np.array([-4.]) #s
+        res = minimize(E_afix_inf,guess,args=(0.,y,n,u, z_c, a_c),bounds=bnds)
+        return n,u,0.,exp(res.x[0]),y,E_afix_inf(res.x,0.,y,n,u,z_c, a_c)
+    elif (1-n)*u/2 < 7:
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c, a_c),bounds=bnds)
+        return n,u,1.,exp(res.x[0]),y,E_afix_inf(res.x,1.,y,n,u,z_c, a_c)
+    else: #near the 1st order transition from weak/strong coupling
+        res = minimize(E_afix_inf,guess,args=(0.,y,n,u, z_c, a_c),bounds=bnds)
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res2 = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c,a_c),bounds=bnds)
+        if E_afix_inf(res.x,0.,y,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,y,n,u,z_c, a_c): 
+            return n,u,1.,exp(res2.x[0]),y,E_afix_inf(res2.x,1.,y,n,u,z_c, a_c)
+        else:
+            return n,u,0., exp(res.x[0]),y,E_afix_inf(res.x,0.,y,n,u,z_c, a_c)
 
 ########################################################################################################################
 '''Various integrals for optimization'''
@@ -323,11 +414,11 @@ def Integral_ln(double y, double s, double a, double z_c, int option):
         return pow(numer,2)/denom
 
     if option == 1: #For a < a_c
-        return mpm.quad(lambda x,u: Integrand1(u,x,y,s,a),[0,z_c],[-1,1])
+        return 2*mpm.quad(lambda x,u: Integrand1(u,x,y,s,a),[0,z_c],[0,1])
     elif option == 2: #For a_c <= a < 1
         return integrate.quad(Integrand2, z_c, np.inf, args=(y,s,a))[0] 
     elif option == 3: #For a=1
-        return mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[-1,1])
+        return 2*mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[0,1])
     else: return 0.
 
 def Eph_ln(double s, double a, double y, double n, double U, double z_c, double a_c):
@@ -405,25 +496,49 @@ def min_E_bip_ln2(tuple args):
     cdef double u = args[1]
     cdef double z_c = args[2]
     cdef double a_c = args[3]
-    cdef tuple bnds = ((-2,2),(-2,3),(0,1),) #y, s, a
+    cdef tuple bnds = ((-2,2),(-2.5,0),(0,1),) #y, s, a
     cdef np.ndarray[double, ndim=1] guess = np.array([0.,-1,0.1])
     if (1-n)*u/2 > 9:
-        bnds = ((-2,2),(-2,1),(0,0.3),) #y, s, a
-        guess = np.array([0.,-1,0.01])
-        res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
-        return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
+        if n == 0 and (1-n)*u/2 > 25:
+            bnds = ((-2,2),(-5,-2),(0,0.3),) #y, s, a
+            guess = np.array([0.,-4.,0.001])
+            res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
+            return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
+        elif n > 0 and (1-n)*u/2 > 25:
+            #need to compare y->inf strong coupling result with y = finite result and take the lower one
+            bnds = ((-2,2),(-5,-2),(0,0.3),) #y, s, a
+            guess = np.array([0.,-4.,0.001])
+            res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
+            bnds = ((-5,-2),) #s
+            guess = np.array([-4.]) #s
+            res2 = minimize(E_afix_inf,guess,args=(0.,500.,n,u, z_c, a_c),bounds=bnds) #treating y = 500 as "infty"
+            if E_bip_ln(res.x,n,u,z_c, a_c) > E_afix_inf(res2.x,0.,500.,n,u,z_c, a_c): 
+                return n,u,0.,exp(res2.x[0]),500.,E_afix_inf(res2.x,0.,500.,n,u,z_c, a_c)
+            else:
+                return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
+        else:             
+            bnds = ((-2,2),(-2,0),(0,0.3),) #y, s, a
+            guess = np.array([0.,-1,0.01])
+            res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
+            return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
     elif (1-n)*u/2 < 7:
-        bnds = ((-2,2),(2,5),) #y,s
+        bnds = ((-3,1),(2,5),) #y,s
         guess = np.array([0.,5.])
         res = minimize(E_bip_afix,guess,args=(n,u, z_c, a_c,1.),bounds=bnds)
-        return n,u,1.,exp(res.x[1]),exp(res.x[0]),E_bip_afix(res.x,1.,n,u,z_c, a_c)
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res2 = minimize(E_afix_inf,guess,args=(1.,500.,n,u, z_c, a_c),bounds=bnds)
+        if E_bip_afix(res.x,1.,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,500.,n,u,z_c, a_c): 
+            return n,u,1.,exp(res2.x[0]),500.,E_afix_inf(res2.x,1.,500.,n,u,z_c, a_c)
+        else:
+            return n,u,1.,exp(res.x[1]),exp(res.x[0]),E_bip_afix(res.x,1.,n,u,z_c, a_c)
     else:
         res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
-        bnds = ((-2,2),(2,5),) #y,s
-        guess = np.array([0.,5.])
-        res2 = minimize(E_bip_afix,guess,args=(n,u, z_c, a_c,1.),bounds=bnds)
-        if E_bip_ln(res.x,n,u,z_c, a_c) > E_bip_afix(res2.x,1.,n,u,z_c, a_c): 
-            return n,u,1.,exp(res2.x[1]),exp(res2.x[0]),E_bip_afix(res2.x,1.,n,u,z_c, a_c)
+        bnds = ((2,5),) #s
+        guess = np.array([5.])
+        res2 = minimize(E_afix_inf,guess,args=(1.,500.,n,u, z_c, a_c),bounds=bnds)
+        if E_bip_ln(res.x,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,500.,n,u,z_c, a_c): 
+            return n,u,1.,exp(res2.x[0]),500.,E_afix_inf(res2.x,1.,500.,n,u,z_c, a_c)
         else:
             return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
 
@@ -446,12 +561,15 @@ def min_E_bip_yfix_ln(tuple args):
     cdef double z_c = args[2]
     cdef double a_c = args[3]
     cdef double y = args[4]
-    cdef tuple bnds = ((-1,5),(0,1),) #s, a
-    cdef np.ndarray[double, ndim=1] guess = np.array([1.,0.1])
+    cdef tuple bnds = ((0,1),(-2.5,0),) #a,s
+    cdef np.ndarray[double, ndim=1] guess = np.array([0.1,-1.])
 
     if (1-n)*u/2 > 9:
-        bnds = ((0,0.3),(-1,3),) #a, s
-        guess = np.array([0.001,1.])
+        bnds = ((0,0.3),(-2,0),) #a, s
+        guess = np.array([0.001,-1.])
+        if (1-n)*u/2 > 25:
+            bnds = ((0,0.3),(-5,-2),) #a, s
+            guess = np.array([0.,-4.])
         res = minimize(E_bip_yfix_ln,guess,args=(y,n,u, z_c, a_c),bounds=bnds)
         return n,u,res.x[0],exp(res.x[1]),y,E_bip_yfix_ln(res.x,y,n,u,z_c, a_c)
     elif (1-n)*u/2 < 7:
@@ -461,7 +579,7 @@ def min_E_bip_yfix_ln(tuple args):
         return n,u,1.,exp(res.x[0]),y,E_bip_ayfix(res.x,y,1.,n,u,z_c, a_c)
     else:
         res = minimize(E_bip_yfix_ln,guess,args=(y,n,u, z_c, a_c),bounds=bnds)
-        bnds = ((2,5),) #y,s
+        bnds = ((2,5),) #s
         guess = np.array([5.])
         res2 = minimize(E_bip_ayfix,guess,args=(y,1.,n,u, z_c, a_c),bounds=bnds)
         if E_bip_yfix_ln(res.x,y,n,u,z_c, a_c) > E_bip_ayfix(res2.x,y,1.,n,u,z_c, a_c): 
@@ -535,7 +653,7 @@ def E_bip_aysfix(tuple x):
             args = x = (s, y, a, n, U, z_c, a_c)
     '''
     cdef double KE = exp(-2*x[0]) * (3 - pow(x[1],2)/2* exp(-pow(x[1],2)/2) / (1 + exp(pow(x[1],2)/2)) )
-    cdef double coul = x[4]* exp(-x[0]) * (erf(x[1]/sqrt(2)) /x[0] + sqrt(2/pi)*exp(-pow(x[1],2)/2)) / (1 + exp(-pow(x[1],2)/2))
+    cdef double coul = x[4]* exp(-x[0]) * (erf(x[1]/sqrt(2)) *1./x[1] + sqrt(2/pi)*exp(-pow(x[1],2)/2)) / (1 + exp(-pow(x[1],2)/2))
     cdef double e_ph = Eph_ln(x[0],x[2], x[1], x[3], x[4], x[5],x[6])
     return x[3],x[4],x[2],exp(x[0]),x[1], KE + e_ph + coul
 

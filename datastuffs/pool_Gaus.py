@@ -57,11 +57,12 @@ def minimization(n,u):
 
 if __name__ == '__main__': 
     import pandas as pd
-    ns = np.linspace(0,.999,200) #60; eta values
-    #ns = [eta_STO]
-    #Us = np.linspace(0.001,5,30)
+    ns = [0.]
+    Us = np.linspace(1E-3,40,50)
+    #ns = np.linspace(0,.999,200) #60; eta values
+
     U_STO = elec**2/(epsinf*hbar)*np.sqrt(2*m/(hbar*w))*1E-9 #convert statC in e^2 term into J to make U dimensionless
-    Us = [U_STO]
+    #Us = [U_STO]
 
     tic = time.perf_counter()
     df={}
@@ -79,5 +80,5 @@ if __name__ == '__main__':
     print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
     data = pd.DataFrame(df)
     print(data)
-    data.to_csv("./data/gauss_fixedU.csv",sep=',',index=False)
+    data.to_csv("./data/gauss_U40.csv",sep=',',index=False)
     

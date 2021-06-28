@@ -120,24 +120,38 @@ def PlotE(csvname,fit=False,opt='fin', multiplot=False):
         ax.plot(alphas3,E3,label='$y\\to \infty$')
         ax2.plot(alphas3,s3,label='$y\\to \infty$')
         ax4.plot(alphas3,a3,label='$y\\to \infty$')
-    else:
+        
+        df5 = pd.read_csv("./data/devreese0.csv")
+        alphas5 = np.array([(1-n)*U/2. for n,U in zip(df5["eta"].values, df5['U'].values)])
+        ax.plot(alphas5, df5['E'].values, label='Devreese0')
+        df6 = pd.read_csv("./data/devreese1.csv")
+        alphas6 = np.array([(1-n)*U/2. for n,U in zip(df6["eta"].values, df6['U'].values)])
+        ax.plot(alphas6, df6['E'].values, label='Devreese1')
+        #ax.plot(alphas6, df6['Einf'].values, label='E_inf')
+        df7 = pd.read_csv("./data/gauss_U40.csv")
+        alphas7 = np.array([(1-n)*U/2. for n,U in zip(df7["eta"].values, df7['U'].values)])
+        ax.plot(alphas7, df7['E_opt'].values, label='Gaussian')
+
+        #just plot the energy comparison plot with Devreese
+        fig1 = plt.figure(figsize=(6,4.5))
+        ax1 = fig1.add_subplot(111)
+        ax1.plot(alphas,E,label='$E_{opt}$')
+        ax1.plot(alphas3, E3, label='$E_\infty$')
+        ax1.plot(alphas7, df7['E_opt'].values, label='$a=0$')
+        ax1.plot(alphas5, df5['E'].values, label='DEV92')
+        ax1.set_xlabel("$\\alpha$")
+        ax1.set_ylabel("E/K")
+        ax1.legend(loc=1)
+        plt.tight_layout()
+        plt.show()
+
+    elif opt == 'inf':
         Ehyb = df4["E_inf"].values
         shyb = df4["s_inf"].values
         yhyb = df4["y_inf"].values
         ahyb = df4["a_inf"].values
         singpol = np.array([-2*al**2/(3*np.pi) for al in alphas4])
         ax.plot(alphas4,singpol, label='Gaussian (inf)')
-
-    df5 = pd.read_csv("./data/devreese0.csv")
-    alphas5 = np.array([(1-n)*U/2. for n,U in zip(df5["eta"].values, df5['U'].values)])
-    ax.plot(alphas5, df5['E'].values, label='Devreese0')
-    df6 = pd.read_csv("./data/devreese1.csv")
-    alphas6 = np.array([(1-n)*U/2. for n,U in zip(df6["eta"].values, df6['U'].values)])
-    ax.plot(alphas6, df6['E'].values, label='Devreese1')
-    #ax.plot(alphas6, df6['Einf'].values, label='E_inf')
-    df7 = pd.read_csv("./data/gauss_U40.csv")
-    alphas7 = np.array([(1-n)*U/2. for n,U in zip(df7["eta"].values, df7['U'].values)])
-    ax.plot(alphas7, df7['E_opt'].values, label='Gaussian')
 
     ax2.legend(loc=1)
     ax3.legend(loc=1)
@@ -180,18 +194,6 @@ def PlotE(csvname,fit=False,opt='fin', multiplot=False):
     plt.show()
    
     if multiplot == True: 
-        #just plot the energy comparison plot with Devreese
-        fig1 = plt.figure(figsize=(6,4.5))
-        ax1 = fig1.add_subplot(111)
-        ax1.plot(alphas,E,label='$E_{opt}$')
-        ax1.plot(alphas7, df7['E_opt'].values, label='$a=0$')
-        ax1.plot(alphas5, df5['E'].values, label='DEV92')
-        ax1.set_xlabel("$\\alpha$")
-        ax1.set_ylabel("E/K")
-        ax1.legend(loc=1)
-        plt.tight_layout()
-        plt.show()
-
         #plot metastable solutions
         dfstr = pd.read_csv('./data/nakano_yfin_U20_str.csv') #strong coupling solution - plot as dashed line
         astr = dfstr["a"].values
@@ -215,20 +217,23 @@ def PlotE(csvname,fit=False,opt='fin', multiplot=False):
         axe.set_xlabel("$\\alpha$")
         axe.set_ylabel("$E/K$",color='red')
         tax = axe.twinx()
-        yidx = np.where(ys==ys.min())[0][0]
-        yphys = ys[yidx:] #ignore part where y diverges
-        al_ys = alphas[yidx:]
-        tax.plot(al_ys,yphys,color='blue',label='$y$')
-        tax.plot(alphastr,ystr,'b--')
+        yidx = np.where(ys==ys.min())[0]
+        yphys = ys[yidx[0]:] #ignore part where y diverges
+        al_ys = alphas[yidx[0]:]
+        tax.plot(al_ys,yphys + 0.1,color='blue',label='$y + 0.1$')
+        #tax.plot(alphas[yidx[1:-2]],ys[yidx[1:-2]] + 0.1,color='blue',label='$y + 0.1$', linewidth=10, alpha=0.3)#weak soln for y is the same as for a, i.e. y finite ~ 1; our optimization algorithm can't find the right soln, so set line thickness to account for error/uncertainty
+       
+        tax.axhline(ys[yidx[1]] + 0.1,xmin = 0.06, xmax=0.397, color='blue',label='$y + 0.1$', linewidth=10, alpha=0.3)#weak soln for y is the same as for a, i.e. y finite ~ 1; our optimization algorithm can't find the right soln, so set line thickness to account for error/uncertainty
+        tax.plot(alphastr,ystr + 0.1,'b--')
         tax.plot(alphas,ayes,color='green',label='$a$')
         tax.plot(alphastr,astr,'g--')
         tax.plot(alphawk,awk,'g:')
         #tax.semilogy()
-        multicolor_ylabel(tax,('$y$',',','$a$'),('b','k','g'),axis='y')
+        multicolor_ylabel(tax,('$y + 0.1$',',','$a$'),('b','k','g'),axis='y')
         plt.tight_layout()
         plt.show()
 
-def PlotBindingE(csvnames):
+def PlotBindingE(csvnames, realval=False):
     '''Plot binding energy (E_bi - E_inf)/|E_inf| as fxn of alpha'''
     csv, csv_inf = csvnames
     df = pd.read_csv(csv) 
@@ -241,13 +246,17 @@ def PlotBindingE(csvnames):
     E_bi = df["E"].values
 
     E_inf = df2["E"].values
-    dE = (E_bi-E_inf)/np.abs(E_inf)
+    if realval==False:
+        dE = (E_bi-E_inf)/np.abs(E_inf)
+        ax.set_ylabel("$\Delta E/|E_\infty|$")
+    else: 
+        dE = E_bi-E_inf
+        ax.set_ylabel("$\Delta E$")
 
     ax.plot(alphas,dE,label='$\Delta E$')
     ax.set_xlabel("$\\alpha$")
-    ax.set_ylabel("$\Delta E/|E_\infty|$")
-    ax.set_ylim(-0.2,0.2)
-    ax.plot(alphas,[0.]*len(alphas),label='$\Delta E$')
+    #ax.set_ylim(-0.2,0.2)
+    ax.plot(alphas,[0.]*len(alphas),label='$\Delta E=0$')
 
     #ax.legend(loc=1)
 
@@ -255,6 +264,63 @@ def PlotBindingE(csvnames):
     plt.show()
 
 ###########################################################################################################################
+'''Compile paper plots & add labels on subplots e.g. A), B), C)'''
+#Fig 1 - binding energy
+def FormatPhaseDia():
+    import os
+    import string
+    import mpl_toolkits.axes_grid1.inset_locator as mpl_il
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+    path = os.path.dirname(os.path.abspath(__file__))
+    path += "/data/"
+    csvname2b = path + "nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
+    csvname2 = path + "nakano_yfin_U15_eta0-1.csv"
+
+    fig = plt.figure(figsize=(8,6))
+    ax = fig.add_subplot(111)
+
+    #first, plot the data
+    E_binding(csvname2, csvname2b, colnames=['eta','U','E'], point = True, logplot='y', realval = False, fig = fig, ax = ax, show=False)
+
+    # Create a set of inset Axes: these should fill the bounding box allocated to
+    # them.
+    ax2 = plt.axes([0,0,1,1])
+    # Manually set the position and relative size of the inset axes within ax1
+    ip = mpl_il.InsetPosition(ax, [0.3,0.12,0.45,0.45]) #left, bottom, width, height
+    ax2.set_axes_locator(ip)
+    # Mark the region corresponding to the inset axes on ax1 and draw lines
+    # in grey linking the two axes.
+    mpl_il.mark_inset(ax, ax2, loc1=1, loc2=3, fc="none", ec='0.5')
+    #E_binding(csvname2, csvname2b, colnames=['eta','U','E'], point = True, logplot='y', xlims=(0,0.003),ylims=(1,), fig=fig, ax = ax2, realval = True, scinot=True, cbscale=True)
+
+    df = pd.read_csv(csvname2)
+    df2 = pd.read_csv(csvname2b)
+    dEs = np.array([(E-Einf) for E,Einf in zip(df['E'].values, df2['E'].values)])
+    df['dE'] = dEs
+    colnames=['eta','U','dE']
+    ns, Us, Zbind = ps.parse_CSV(df,colnames)
+    a,b,c = colnames
+    cp = ax2.contourf(ns, Us, Zbind, levels = MaxNLocator(nbins=20).tick_values(Zbind.min(), 0))
+    ax2.set_xlim(0,0.003)
+    ax2.set_ylim(1, Us.max())
+    ax2.semilogy()
+
+    #Plot various material param values
+    ax2.plot(eta_STO,U_STO,color='black',marker='.') #STO, strontium titanate
+    ax2.annotate('STO', (eta_STO, U_STO), xytext=(8, -8), textcoords='offset pixels')
+    ax2.plot(etaKTO,UKTO,color='black',marker='.') #KTO, potassium tantalate
+    ax2.annotate('KTO', (etaKTO, UKTO), xytext=(8, -8), textcoords='offset pixels')
+
+    cbar=fig.colorbar(cp, ax=ax2, format='%.2e', shrink=0.348, location='right', anchor=(-1.8,0.308), pad=0.01) # Add a colorbar to a plot; scientific notation
+    cbar.ax.set_ylabel('$\Delta E$')
+
+    ax2.set_xlabel(a)
+    ax2.set_ylabel(b)
+    plt.show()
+
+###########################################################################################################################
+
 '''Single polaron energy calcs for variational and fixed a'''
 
 def hybpol(x,eta, U):
@@ -482,9 +548,14 @@ def GenE_vs_eta_y_fixedU(generate = False):
         print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
         pd.DataFrame(df3).to_csv(csvname3,sep=',',index=False)
         
-    fig = plt.figure(figsize=(4.5,9))
-    ax = fig.add_subplot(211)
-    ax2 = fig.add_subplot(212)
+    fig = plt.figure(figsize=(5,4.5))
+    ax = fig.add_subplot(111)
+    fig2 = plt.figure(figsize=(5,4.5))
+    ax2 = fig2.add_subplot(111)
+    #if want subplots
+    #fig = plt.figure(figsize=(4.5,9))
+    #ax = fig.add_subplot(211)
+    #ax2 = fig.add_subplot(212)
 
     #read in CSV as Pandas dataframe
     df = pd.read_csv(csvname)
@@ -500,6 +571,7 @@ def GenE_vs_eta_y_fixedU(generate = False):
     intersect = np.argwhere(np.diff(np.sign(df['E'].values - df2['E_inf'].values))).flatten()
     print(intersect)
     print(df['eta'].values[intersect])
+    fig.set_tight_layout(True) #use if making 2 diff plots to prevent y-axis label from getting cut off
 
     etas = np.unique(df3['eta'].values)
     for eta in etas:
@@ -611,69 +683,79 @@ def plotContour(filename, colnames,xlims=(), ylims=(), zlims=(),save=False, zero
         plt.savefig(ps.SavePath(filename,suffix))
     plt.show()
 
-def PlotAtFixedVal(filename, colnames, fixedqty, fixedvals, logplot=0,save = False,savetype='png'):
+def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, logplot=0, fit=False):
     '''
     input:
+        filenames: length 1 or 2 array
         colnames: length 2 array of [x,y]
         fixedqty: name of quantity held fixed while plotting
         fixedval: value of fixed quantity
     '''
-    df = pd.read_csv(filename)
+    df = pd.read_csv(filenames[0])
     a = colnames[0] # this is the x axis column
-    b = colnames[1:] #these are the quantities to plot on the y-axis
-    if len(b) == 1:
-        if len(fixedvals) == 1:
-            suffix = '_' + b[0] + '_vs_' + a + '_fixed_' + fixedqty + '_' + ("%.2f" %fixedvals[0]).replace(".","-")
-        else: 
-            suffix = '_' + b[0] + '_vs_' + a + '_fixed_' + fixedqty
-    else:
-        if len(fixedvals) == 1:
-            suffix = '_' + b[0].split('_')[0] + '_vs_' + a + '_fixed_' + fixedqty + '_' + ("%.2f" %fixedvals[0]).replace(".","-")
-        else: 
-            suffix = '_' + b[0].split('_')[0] + '_vs_' + a + '_fixed_' + fixedqty
-    suffix += "." + savetype
-    print(suffix)
+    b = colnames[1] #these are the quantities to plot on the y-axis
 
     fig = plt.figure(figsize=(6,4.5))
     ax = fig.add_subplot(111)
     for val in fixedvals:
-        val, fixed_x, fixed_ys = ps.FindArrs(df, colnames, fixedqty, val)
+        if b == 'dE':
+            val, fixed_x, Efins = ps.FindArrs(df, [a,'E'], fixedqty, val)
+            df2 = pd.read_csv(filenames[1])
+            _, _, Einfs = ps.FindArrs(df2, [a,'E'], fixedqty, val)
+            ylist = [-(Efin-Einf)/np.abs(Einf) for Efin, Einf in zip(Efins, Einfs)][0] #plot negative binding energy
+            b = '-dE'
+        else:
+            val, fixed_x, fixed_ys = ps.FindArrs(df, colnames, fixedqty, val)
+            ylist = fixed_ys[0]
         if fixedqty == 'eta': fixedqty = '\\' + fixedqty
-        
-        for i,ylist in enumerate(fixed_ys):
-            #pre,post = b[i].split('_')
-            ax.plot(fixed_x, ylist,label= '$' + b[i] + '$, $' + fixedqty + ' = $%.3f' %val)
-            #if b[i] =='E':
-            #    #cut off values where bipolaron formation not possible (E_opt)
-            #    stop = np.where(fixed_x<0.44)[0]
-            #    ax.plot(fixed_x[stop], ylist[stop],label= '$' + b[i] + '}$, $' + fixedqty + ' = $%.2f' %val)
-            #else:    
-            #    ax.plot(fixed_x, ylist,label= '$' + b[i] + '$, $' + fixedqty + ' = $%.2f' %val)
-        
-        #find intersection point
-    #if (len(fixed_ys)==2) & ('E' in b) & ('E' in b):
-    #    idx = np.argwhere(np.diff(np.sign(fixed_ys[0] - fixed_ys[1]))).flatten()
-    #    ax.plot(fixed_x[idx], fixed_ys[0][idx], 'ro')
 
-    if logplot == 1:
-        ax.semilogx()
-    if logplot == 2:
-        ax.loglog()
+    if logplot == 3:
+        logx = np.log10(fixed_x)
+        logy = np.log10(ylist)
+        ax.plot(logx, logy, label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
+        if fit == True:
+            def fitweak(x,A,B):
+                f = A + B*x
+                return f
 
-    if len(b) > 1: ax.set_ylabel("$" + b[0] + "/K$")
-    else: ax.set_ylabel('$' + b[0] + '$')
-    if a == 'eta': a = "\\" + a
-    ax.set_xlabel('$' + a + '$')
-    ax.legend()
+            bnds_w = ([-10,-5],[10,5]) # #bounds for weak coupling fit
+            guess_w =[0,0]
+            #idx = np.where((logy <= -2) & (logy >= -4))[0] #for eta = 0
+            idx = np.where((logy <= -1.5) & (logy >= -3))[0] #for eta = 0.05
+            coeffs, p_cov_w = curve_fit(fitweak,logx[idx], logy[idx], p0=guess_w,bounds=bnds_w)
+            print(coeffs)
+            print(np.sqrt(np.diag(p_cov_w))) #standard deviation of the parameters in the fit
+            ans_w = np.array([fitweak(x,coeffs[0],coeffs[1]) for x in logx[idx]])
+            ax.plot(logx[idx],ans_w,color='red',label='fit')
+
+            textstr = '\n'.join((
+                r'$\log (dE) = A + B \log U$',
+                r'$A=%.4f$' % (coeffs[0], ),
+                r'$B=%.4f$' % (coeffs[1], )
+                ))
+
+            ax.text(0.05, 0.45, textstr, transform=ax.transAxes, fontsize=14,
+                verticalalignment='top')
+
+        ax.set_ylabel('$\log' + b + '$')
+        if a == 'eta': a = "\\" + a
+        ax.set_xlabel('$\log' + a + '$')
+        ax.legend()
+    else:
+        ax.plot(fixed_x, ylist,'.',label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
+        if logplot == 1:
+            ax.semilogx()
+        elif logplot == 2:
+            ax.semilogy()
+        ax.set_ylabel('$' + b + '$')
+        if a == 'eta': a = "\\" + a
+        ax.set_xlabel('$' + a + '$')
+        ax.legend()
 
     plt.tight_layout()
-    print(ps.format_filename(filename))
-
-    if save == True: 
-        plt.savefig(ps.SavePath(filename,suffix))
     plt.show()
 
-def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=False, point=False, logplot=''):
+def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=False, point=False, logplot='', realval = False, fig=None, ax=None, scinot = False, show = True):
     '''
     Plot binding energy for phase diagram
     inputs:
@@ -683,8 +765,10 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
         colnames: array of [xname, yname, zname]
     '''
     #phase diagram!
-    fig = plt.figure(figsize=(6,4.5))
-    ax = fig.add_subplot(111)
+    #if have a preexisting figure/axis I want to plot on, use it
+    if fig == None or ax == None:
+        fig = plt.figure(figsize=(6,4.5))
+        ax = fig.add_subplot(111)
     df = pd.read_csv(filename1)
     if colnames[-1] == 'y':
         #find all indices corresponding with y maxed out - these are all energies which should actually be equal to the E_inf result. However, due to numerical difficulties the optimizer ended up finding the wrong parameter values.
@@ -692,8 +776,14 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
        df['E'] = newEs
        colnames = np.delete(colnames,-1)
     df2 = pd.read_csv(filename2)
-    #dEs = np.array([(E-Einf)/np.abs(Einf) if np.abs((E-Einf)/np.abs(Einf)) > 1E-5 else 1. for E,Einf in zip(df['E'].values, df2['E'].values)])
-    dEs = np.array([(E-Einf)/np.abs(Einf) for E,Einf in zip(df['E'].values, df2['E'].values)])
+    if realval == False: #binding energies relative to the single polaron energy
+        if logplot == 'z':
+            dEs = np.array([(E-Einf)/np.abs(Einf) if (E-Einf) < 0 else -1. for E,Einf in zip(df['E'].values, df2['E'].values)])
+        else:
+            dEs = np.array([(E-Einf)/np.abs(Einf) for E,Einf in zip(df['E'].values, df2['E'].values)])
+    else:  #absolute energy differences (in units of hw)
+        dEs = np.array([(E-Einf) for E,Einf in zip(df['E'].values, df2['E'].values)])
+
     df['dE'] = dEs
     colnames[-1] = 'dE'
     ns, Us, Zbind = ps.parse_CSV(df,colnames)
@@ -707,8 +797,11 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
         zmax = 0.
     
     #set limits on x and y axes if argument given
-    if len(xlims) >0: ax.set_xlim(xlims[0],xlims[1])
-    if len(ylims) >0: ax.set_ylim(ylims[0],ylims[1])
+    if len(xlims) == 1: ax.set_xlim(xlims[0], ns.max())
+    elif len(xlims) == 2: ax.set_xlim(xlims[0],xlims[1])
+
+    if len(ylims) == 1: ax.set_ylim(ylims[0], Us.max())
+    elif len(ylims) == 2: ax.set_ylim(ylims[0],ylims[1])
 
     if logplot == 'y':
         ax.semilogy()
@@ -716,46 +809,73 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
         ax.semilogx()
     if logplot == 'z':
         Zbind = -Zbind
-        cp = ax.contourf(ns, Us, Zbind, levels = MaxNLocator(nbins=20).tick_values(-zmax, -zmin), norm=LogNorm()) #put color bar on log scale
+        cp = ax.contourf(ns, Us, Zbind, levels = MaxNLocator(nbins=20).tick_values(-zmin,1.), norm=LogNorm()) #put color bar on log scale
     else:
         cp = ax.contourf(ns, Us, Zbind, levels = MaxNLocator(nbins=20).tick_values(zmin, zmax))
 
     #Plot various material param values
     if point == True: 
-        ax.plot(eta_STO,U_STO,color='red',marker='.') #STO, strontium titanate
-        ax.annotate('STO', (eta_STO, U_STO), xytext=(6, 0), textcoords='offset pixels')
-        ax.plot(etaKTO,UKTO,color='red',marker='.') #KTO, potassium tantalate
-        ax.annotate('KTO', (etaKTO, UKTO), xytext=(6, 0), textcoords='offset pixels')
-        ax.plot(9.05E-2, 2.6 ,color='red',marker='.') #PbS Lead sulfide, alloy
+        ax.plot(eta_STO,U_STO,color='black',marker='.') #STO, strontium titanate
+        ax.annotate('STO', (eta_STO, U_STO), xytext=(8, -8), textcoords='offset pixels')
+        ax.plot(etaKTO,UKTO,color='black',marker='.') #KTO, potassium tantalate
+        ax.annotate('KTO', (etaKTO, UKTO), xytext=(8, -8), textcoords='offset pixels')
+        ax.plot(9.05E-2, 2.6 ,color='black',marker='.') #PbS Lead sulfide, alloy
         ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-15, 6), textcoords='offset pixels')
-        ax.plot(8.18E-2, 2.58,color='red',marker='.') #PbSe Lead selenide
+        ax.plot(8.18E-2, 2.58,color='black',marker='.') #PbSe Lead selenide
         ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-40, 0), textcoords='offset pixels')
-        ax.plot(8.26E-2, 1.87,color='red',marker='.') #PbTe Lead telluride
+        ax.plot(8.26E-2, 1.87,color='black',marker='.') #PbTe Lead telluride
         ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(6, -10), textcoords='offset pixels')
-        ax.plot(3.75E-2, 3.12,color='red',marker='.') #SnTe Tin telluride
+        ax.plot(3.75E-2, 3.12,color='black',marker='.') #SnTe Tin telluride
         ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(6, 0), textcoords='offset pixels')
-        ax.plot(8E-2, 0.47,color='red',marker='.') #GeTe Germanium telluride
+        ax.plot(8E-2, 0.47,color='black',marker='.') #GeTe Germanium telluride
         ax.annotate('GeTe', (8E-2, 0.47), xytext=(-40, 0), textcoords='offset pixels')
-    #plot alpha = 8 ish curve
-    #alphas = np.array([(1-n)*u/2 for n,u in zip(df['eta'].values, df['U'].values)])
-    #df['alpha'] = alphas
-    #colnames[-1]= 'alpha'
-    #_,_,alphaZ = ps.parse_CSV(df,colnames)
-    #alphacont = ax.contour(ns, Us, alphaZ, [9.], colors=('g',), linewidths=(1,), origin='lower') #plot alpha = 9 curve
-    zerocont = ax.contour(ns, Us, Zbind, [0.], colors=('r',), linewidths=(1,), origin='lower') #plot dE = 0 curve
+
+    #plot binding energy = 0 contour
+    #zerocont = ax.contour(ns, Us, Zbind, [0.], colors=('r',), linewidths=(1,), origin='lower') #plot dE = 0 curve
     #e0,u0 = ps.FindCoords(zerocont)
     #for elist, ulist in zip(e0,u0):
     #    print([(1-et)*yu/2 if yu < 20. else 0. for et,yu in zip(elist,ulist)]) #print alpha values for the bipolaron binding boundary region
 
-    cbar=fig.colorbar(cp) # Add a colorbar to a plot
-    cbar.ax.set_ylabel('$\Delta E/|E_\infty|$')
+    #plot weak-to-strong transition curve (i.e. where a = 1 --> a < 1)
+    yoos = np.unique(df[b].values)
+    etas = np.zeros(len(yoos))
+    for i,u in enumerate(yoos):
+        #for each unique value of U (or eta), find the maximum a != 1 and corresponding index
+        aas = df[df[b] == u]['a'].values
+        aidx = np.where(aas < 1)[0]
+        ayes = aas[aidx]
+        if (len(ayes) > 0) & (len(ayes) < len(aas)):
+            dE = df[df[b] == u]['dE'].values[aidx]
+            print(u)
+            idx = np.where(dE < 0)[0][-1] #pick last value where dE < 0 (this is right before it switches to a=1, dE > 0
+            print(idx)
+            #idx = np.where(ayes == ayes.max())[0]
+            etas[i] = df[df[b] == u][a].values[idx]
+            print(etas[i])
+        else: continue
+    #now get rid of all the redundant eta = 0 values 
+    idx = np.where((etas > 0) & (etas < 0.08))[0]
+    aplt = ax.plot(etas[idx], yoos[idx], color='black') 
+
+    if scinot == True:
+        cbar=fig.colorbar(cp, ax=ax, format='%.2e') # Add a colorbar to a plot; scientific notation
+    else:
+        cbar=fig.colorbar(cp, ax=ax) # Add a colorbar to a plot
+
+    if realval == False:
+        cbar.ax.set_ylabel('$\Delta E/|E_\infty|$')
+    else: 
+        cbar.ax.set_ylabel('$\Delta E$')
+
     ax.set_xlabel(a)
     ax.set_ylabel(b)
-    plt.tight_layout()
-    print(ps.format_filename(filename1))
-    if save == True:
-        plt.savefig(ps.SavePath(filename1,".png"))
-    plt.show()
+
+    if show == True:
+        plt.tight_layout()
+        print(ps.format_filename(filename1))
+        if save == True:
+            plt.savefig(ps.SavePath(filename1,".png"))
+        plt.show()
 
 ##########################################################################################################################
 '''Check E_inf integrand plot (w/ approximations)'''
@@ -776,16 +896,17 @@ def Check_Einf_Integrand(y,s,a):
 def PoolParty(csvname):
     '''run multiprocessing to generate energy CSV for range of alpha vals'''
     #zoom in on weak-coupling regime
-    ns=np.linspace(0,0.095,50)
-    Us = np.geomspace(1E-3,15,50)
+    #ns=np.linspace(0,0.095,50)
+    #Us = np.geomspace(1E-3,15,50)
 
     #For E vs alpha plots
-    #ns = [0.]
-    #Us = np.linspace(1E-3,20,30)
-    
+    ns = [0.]
+    Us = np.linspace(1E-3,40,80)
+    #Us = np.geomspace(1E-10,1,100) #study small U behavior
+
     #Phase diagram capturing edge of horn
-    #ns=np.linspace(0,0.095,50)
-    #Us = np.linspace(0.001,60,80)
+    #ns=np.linspace(0,0.08,60)
+    #Us = np.linspace(0.001,50,200)
     
     #STO, KTO, PbS, PbSe, PbTe, SnTe, GeTe
     #ns = [eta_STO, etaKTO, 9.05E-2, 8.18E-2, 8.26E-2, 3.75E-2, 8E-2]
@@ -806,8 +927,9 @@ def PoolParty(csvname):
     tic = time.perf_counter()
     with multiprocessing.Pool(processes=4) as pool:
         #bipolaron runs for y->inf
-        #job_args = [(n,u,z_c,a_c,y) for n,u in product(ns,Us)]
-        job_args = [(n,u,z_c,a_c,y) for n,u in zip(ns,Us)] #for materials
+        job_args = [(n,u,z_c,a_c,y) for n,u in product(ns,Us)] #for phase diagram
+        #job_args = [(n,u,z_c,a_c,y) for n,u in zip(ns,Us)] #for materials ONLY
+
         #results = pool.map(nag.min_E_avar_inf, job_args)
         results = pool.map(nag.min_E_inf, job_args)
 
@@ -1044,24 +1166,29 @@ if __name__ == '__main__':
     import pandas as pd
     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1
     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1
-    csvname1c = "./data/nakano_yinf_U60.csv" #eta goes to 0.05 ish
-    csvname1d = "./data/nakano_yfin_U60.csv"
-    csvname1e = "./data/nakano_yinf_U16_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
-    csvname1f = "./data/nakano_yfin_U16_eta0-1.csv"
+    csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08
+    csvname1d = "./data/nakano_yinf_U50.csv"
+    csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
+    csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"
     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"
     csvname3 = "./data/nakano_yfin_U40.csv"
-    csvname3b = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
-    csvname3c = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
+    csvname3b = "./data/nakano_yinf_U40.csv"
+    csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
+    csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
     csvname4 = './data/devreese1.csv' #strong coupling soln only
     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
+    csvname_su_fin = './data/nak_smallU_yfin.csv'
+    csvname_su_inf = './data/nak_smallU_yinf.csv'
 
     #FFT(a=0.1,y=0,s=1,opt='nak',ext='.eps')
     #f_r_special()
     #DensityPlot3D()
-    PoolParty(csvname1f)
-    #PlotE(csvname3, fit=False, opt='fin', multiplot=True)
-    #PlotBindingE([csvname,csvname3])
+
+    #PoolParty(csvname3b)
+    #PlotE(csvname3, fit=False, opt='', multiplot=True)
+
+    #PlotBindingE([csvname_su_fin,csvname_su_inf])
     #GenE_vs_a()
     #Plot_E_vs_a("./data/testnak.csv",xvar='y',logplot=1)
     #name = E_asig(0.009200924,0,1000,fixed='a')
@@ -1070,9 +1197,13 @@ if __name__ == '__main__':
     #plotContour(csvname1b, colnames=['eta','U','E'],zlims=(), save=False, minmax=5,logplot=0)
     #plotContour(csvname1b, colnames=['eta','U','s'],zlims=(0,1), save=False, minmax=5,logplot=0)
     #plotContour(csvname1b, colnames=['eta','U','y'], save=False, minmax=0,logplot=0)
-    #E_binding(csvname1b, csvname, colnames=['eta','U','E'], point = True)
-    #E_binding(csvname1b, csvname, colnames=['eta','U','E'],ylims=(0,15.9),zlims=(-0.007,-5E-7), point = True)
-     
+    #E_binding(csvname1b, csvname, colnames=['eta','U','E'], realval = False)
+    #E_binding(csvname1c, csvname1d, colnames=['eta','U','E'], realval = False)
+    #E_binding(csvname1f, csvname1e, colnames=['eta','U','E'], point = True, logplot='y', realval = False)
+    #E_binding(csvname1f, csvname1e, colnames=['eta','U','E'], point = True, logplot='y', xlims=(0,0.003),ylims=(1,), realval = True)
+    #FormatPhaseDia()
     #GenE_vs_eta_y_fixedU(False)
-    #PlotAtFixedVal(csvname, colnames=['U','E'], fixedqty='eta', fixedvals=[0.01], logplot=0,save = False)
+    #PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=3, fit=True)
+    #PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0.05], logplot=3, fit=True)
+    PlotAtFixedVal([csvname3, csvname3b], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=0)
 

@@ -211,14 +211,18 @@ def min_E_inf(tuple args):
         res = minimize(E_afix_inf,guess,args=(0.,y,n,u, z_c, a_c),bounds=bnds)
         return n,u,0.,exp(res.x[0]),y,E_afix_inf(res.x,0.,y,n,u,z_c, a_c)
     elif (1-n)*u/2 < 7:
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((9,10),) #s
+        guess = np.array([10.])
+        #bnds = ((2,5),) #s
+        #guess = np.array([5.])
         res = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c, a_c),bounds=bnds)
         return n,u,1.,exp(res.x[0]),y,E_afix_inf(res.x,1.,y,n,u,z_c, a_c)
     else: #near the 1st order transition from weak/strong coupling
         res = minimize(E_afix_inf,guess,args=(0.,y,n,u, z_c, a_c),bounds=bnds)
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((9,10),) #s
+        guess = np.array([10.])
+        #bnds = ((2,5),) #s
+        #guess = np.array([5.])
         res2 = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c,a_c),bounds=bnds)
         if E_afix_inf(res.x,0.,y,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,y,n,u,z_c, a_c): 
             return n,u,1.,exp(res2.x[0]),y,E_afix_inf(res2.x,1.,y,n,u,z_c, a_c)
@@ -380,6 +384,7 @@ def min_E_bip_ln2(tuple args):
     cdef double u = args[1]
     cdef double z_c = args[2]
     cdef double a_c = args[3]
+    cdef double sig = 10.
     cdef tuple bnds = ((-2,2),(-2.5,0),(0,1),) #y, s, a
     cdef np.ndarray[double, ndim=1] guess = np.array([0.,-1,0.1])
     if (1-n)*u/2 > 9:
@@ -402,16 +407,16 @@ def min_E_bip_ln2(tuple args):
     elif (1-n)*u/2 < 7:
         bnds = ((-1,1),) #y
         guess = np.array([0.])
-        res = minimize(E_bip_asfix,guess,args=(5.,1.,n,u, z_c, a_c),bounds=bnds)
-        return n,u,1.,exp(5.),exp(res.x[0]),E_bip_asfix(res.x,5.,1.,n,u,z_c, a_c)
+        res = minimize(E_bip_asfix,guess,args=(sig,1.,n,u, z_c, a_c),bounds=bnds)
+        return n,u,1.,exp(sig),exp(res.x[0]),E_bip_asfix(res.x,sig,1.,n,u,z_c, a_c)
     else:
         #this is for 7 < alpha < 9
         res = minimize(E_bip_ln,guess,args=(n,u, z_c, a_c),bounds=bnds)
         bnds = ((-1,1),) #y
         guess = np.array([0.])
-        res2 = minimize(E_bip_asfix,guess,args=(5.,1.,n,u, z_c, a_c),bounds=bnds)
-        if E_bip_ln(res.x,n,u,z_c, a_c) > E_bip_asfix(res2.x,5.,1.,n,u,z_c, a_c):
-            return n,u,1.,exp(5.),exp(res2.x[0]),E_bip_asfix(res2.x,5.,1.,n,u,z_c, a_c)
+        res2 = minimize(E_bip_asfix,guess,args=(sig,1.,n,u, z_c, a_c),bounds=bnds)
+        if E_bip_ln(res.x,n,u,z_c, a_c) > E_bip_asfix(res2.x,sig,1.,n,u,z_c, a_c):
+            return n,u,1.,exp(sig),exp(res2.x[0]),E_bip_asfix(res2.x,sig,1.,n,u,z_c, a_c)
         else:
             return n,u,res.x[2],exp(res.x[1]),exp(res.x[0]),E_bip_ln(res.x,n,u,z_c, a_c)
 

@@ -2044,7 +2044,6 @@ static const char __pyx_k_location[] = "location";
 static const char __pyx_k_meshgrid[] = "meshgrid";
 static const char __pyx_k_minimize[] = "minimize";
 static const char __pyx_k_read_csv[] = "read_csv";
-static const char __pyx_k_read_png[] = "read_png";
 static const char __pyx_k_rotation[] = "rotation";
 static const char __pyx_k_semilogx[] = "semilogx";
 static const char __pyx_k_semilogy[] = "semilogy";
@@ -2156,7 +2155,6 @@ static const char __pyx_k_csvname_mat_inf[] = "csvname_mat_inf";
 static const char __pyx_k_format_filename[] = "format_filename";
 static const char __pyx_k_get_sample_data[] = "get_sample_data";
 static const char __pyx_k_list_of_strings[] = "list_of_strings";
-static const char __pyx_k_matplotlib__png[] = "matplotlib._png";
 static const char __pyx_k_min_hybpol_afix[] = "min_hybpol_afix";
 static const char __pyx_k_multiprocessing[] = "multiprocessing";
 static const char __pyx_k_Delta_E_E__infty[] = "$\\Delta E/|E_\\infty|$";
@@ -2200,8 +2198,6 @@ static const char __pyx_k_marching_cubes_lewiner[] = "marching_cubes_lewiner";
 static const char __pyx_k_data_nak_E_eta__inf_csv[] = "./data/nak_E(eta)_inf.csv";
 static const char __pyx_k_mpl_toolkits_axes_grid1[] = "mpl_toolkits.axes_grid1";
 static const char __pyx_k_DensityPlot3D_locals_rho[] = "DensityPlot3D.<locals>.rho";
-static const char __pyx_k_data_nak_smallU_yfin_csv[] = "./data/nak_smallU_yfin.csv";
-static const char __pyx_k_data_nak_smallU_yinf_csv[] = "./data/nak_smallU_yinf.csv";
 static const char __pyx_k_data_nakano_yfin_U40_csv[] = "./data/nakano_yfin_U40.csv";
 static const char __pyx_k_data_nakano_yfin_U50_csv[] = "./data/nakano_yfin_U50.csv";
 static const char __pyx_k_data_nakano_yinf_U40_csv[] = "./data/nakano_yinf_U40.csv";
@@ -2211,6 +2207,8 @@ static const char __pyx_k_nakano_yfin_U15_eta0_1_csv[] = "nakano_yfin_U15_eta0-1
 static const char __pyx_k_nakano_yinf_U15_eta0_1_csv[] = "nakano_yinf_U15_eta0-1.csv";
 static const char __pyx_k_data_nakano_yfin_U40_wk_csv[] = "./data/nakano_yfin_U40_wk.csv";
 static const char __pyx_k_DensityPlot3D_locals_nak_f_k[] = "DensityPlot3D.<locals>.nak_f_k";
+static const char __pyx_k_data_nak_smallU_yfin_s10_csv[] = "./data/nak_smallU_yfin_s10.csv";
+static const char __pyx_k_data_nak_smallU_yinf_s10_csv[] = "./data/nak_smallU_yinf_s10.csv";
 static const char __pyx_k_data_nakano_yfin_U20_str_csv[] = "./data/nakano_yfin_U20_str.csv";
 static const char __pyx_k_PlotAtFixedVal_locals_fitweak[] = "PlotAtFixedVal.<locals>.fitweak";
 static const char __pyx_k_PlotE_locals_multicolor_ylabel[] = "PlotE.<locals>.multicolor_ylabel";
@@ -2462,8 +2460,8 @@ static PyObject *__pyx_kp_s_data_nak_E_y_s__n;
 static PyObject *__pyx_kp_s_data_nak_fr_para_csv;
 static PyObject *__pyx_kp_s_data_nak_mats_csv;
 static PyObject *__pyx_kp_s_data_nak_mats_inf_csv;
-static PyObject *__pyx_kp_s_data_nak_smallU_yfin_csv;
-static PyObject *__pyx_kp_s_data_nak_smallU_yinf_csv;
+static PyObject *__pyx_kp_s_data_nak_smallU_yfin_s10_csv;
+static PyObject *__pyx_kp_s_data_nak_smallU_yinf_s10_csv;
 static PyObject *__pyx_kp_s_data_nakano_yfin_U15_eta0_1_csv;
 static PyObject *__pyx_kp_s_data_nakano_yfin_U20_str_csv;
 static PyObject *__pyx_kp_s_data_nakano_yfin_U40_csv;
@@ -2636,7 +2634,6 @@ static PyObject *__pyx_n_s_map;
 static PyObject *__pyx_n_s_marching_cubes_lewiner;
 static PyObject *__pyx_n_s_mark_inset;
 static PyObject *__pyx_n_s_marker;
-static PyObject *__pyx_n_s_matplotlib__png;
 static PyObject *__pyx_n_s_matplotlib_cbook;
 static PyObject *__pyx_n_s_matplotlib_colors;
 static PyObject *__pyx_n_s_matplotlib_image;
@@ -2731,7 +2728,6 @@ static PyObject *__pyx_kp_s_r_x;
 static PyObject *__pyx_kp_s_r_y;
 static PyObject *__pyx_kp_s_r_z;
 static PyObject *__pyx_n_s_read_csv;
-static PyObject *__pyx_n_s_read_png;
 static PyObject *__pyx_n_s_real;
 static PyObject *__pyx_n_s_realval;
 static PyObject *__pyx_n_s_red;
@@ -2918,6 +2914,7 @@ static PyObject *__pyx_float_0_308;
 static PyObject *__pyx_float_0_348;
 static PyObject *__pyx_float_0_397;
 static PyObject *__pyx_float_1_185;
+static PyObject *__pyx_float_1Eneg_10;
 static PyObject *__pyx_float_3_75Eneg_2;
 static PyObject *__pyx_float_8_18Eneg_2;
 static PyObject *__pyx_float_8_26Eneg_2;
@@ -2945,7 +2942,6 @@ static PyObject *__pyx_int_10;
 static PyObject *__pyx_int_14;
 static PyObject *__pyx_int_20;
 static PyObject *__pyx_int_30;
-static PyObject *__pyx_int_40;
 static PyObject *__pyx_int_45;
 static PyObject *__pyx_int_50;
 static PyObject *__pyx_int_60;
@@ -12699,7 +12695,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
  *         Us = df[df['alpha'] == alpha]['U'].values
  *         if xvar == 'y':             # <<<<<<<<<<<<<<
  *             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
  */
     __pyx_t_12 = (__Pyx_PyString_Equals(__pyx_v_xvar, __pyx_n_s_y, Py_EQ)); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 387, __pyx_L1_error)
     if (__pyx_t_12) {
@@ -12708,7 +12704,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
  *         Us = df[df['alpha'] == alpha]['U'].values
  *         if xvar == 'y':
  *             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))             # <<<<<<<<<<<<<<
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
  *             ax.set_xlabel("$y$")
  */
       __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_plot); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
@@ -12740,7 +12736,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
       /* "nakanoplots.py":389
  *         if xvar == 'y':
  *             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))             # <<<<<<<<<<<<<<
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))             # <<<<<<<<<<<<<<
  *             ax.set_xlabel("$y$")
  *             ax2.set_xlabel("$y$")
  */
@@ -12751,9 +12747,9 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
       __Pyx_INCREF(__pyx_v_ys);
       __Pyx_GIVEREF(__pyx_v_ys);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_ys);
-      __Pyx_INCREF(__pyx_v_ayes);
-      __Pyx_GIVEREF(__pyx_v_ayes);
-      PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_ayes);
+      __Pyx_INCREF(__pyx_v_sigs);
+      __Pyx_GIVEREF(__pyx_v_sigs);
+      PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_sigs);
       __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_alpha); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
@@ -12772,7 +12768,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
 
       /* "nakanoplots.py":390
  *             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
  *             ax.set_xlabel("$y$")             # <<<<<<<<<<<<<<
  *             ax2.set_xlabel("$y$")
  *             ax2.set_ylabel("$a$")
@@ -12797,7 +12793,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
       /* "nakanoplots.py":391
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
  *             ax.set_xlabel("$y$")
  *             ax2.set_xlabel("$y$")             # <<<<<<<<<<<<<<
  *             ax2.set_ylabel("$a$")
@@ -13150,7 +13146,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
  *         Us = df[df['alpha'] == alpha]['U'].values
  *         if xvar == 'y':             # <<<<<<<<<<<<<<
  *             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))
- *             ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+ *             ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
  */
       goto __pyx_L9;
     }
@@ -13766,7 +13762,7 @@ static PyObject *__pyx_pf_11nakanoplots_14Plot_E_vs_a(CYTHON_UNUSED PyObject *__
  * 
  * def GenE_vs_a():             # <<<<<<<<<<<<<<
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]
+ *     ns=[0.05]
  */
 
 /* Python wrapper */
@@ -13842,44 +13838,35 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
   /* "nakanoplots.py":429
  * def GenE_vs_a():
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]             # <<<<<<<<<<<<<<
- *     Us = [0.001, 0.01, 0.1, 1] #corresponds to alpha = 1,5,8,10
+ *     ns=[0.05]             # <<<<<<<<<<<<<<
+ *     Us = [0.01] #corresponds to alpha = 1,5,8,10
  *     #Us = [20.]
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_float_0_);
-  __Pyx_GIVEREF(__pyx_float_0_);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_float_0_);
+  __Pyx_INCREF(__pyx_float_0_05);
+  __Pyx_GIVEREF(__pyx_float_0_05);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_float_0_05);
   __pyx_v_ns = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "nakanoplots.py":430
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]
- *     Us = [0.001, 0.01, 0.1, 1] #corresponds to alpha = 1,5,8,10             # <<<<<<<<<<<<<<
+ *     ns=[0.05]
+ *     Us = [0.01] #corresponds to alpha = 1,5,8,10             # <<<<<<<<<<<<<<
  *     #Us = [20.]
  *     ayes = np.geomspace(1E-5,1,100)
  */
-  __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_float_0_001);
-  __Pyx_GIVEREF(__pyx_float_0_001);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_float_0_001);
   __Pyx_INCREF(__pyx_float_0_01);
   __Pyx_GIVEREF(__pyx_float_0_01);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_float_0_01);
-  __Pyx_INCREF(__pyx_float_0_1);
-  __Pyx_GIVEREF(__pyx_float_0_1);
-  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_float_0_1);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_float_0_01);
   __pyx_v_Us = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "nakanoplots.py":432
- *     Us = [0.001, 0.01, 0.1, 1] #corresponds to alpha = 1,5,8,10
+ *     Us = [0.01] #corresponds to alpha = 1,5,8,10
  *     #Us = [20.]
  *     ayes = np.geomspace(1E-5,1,100)             # <<<<<<<<<<<<<<
  *     #ayes = np.linspace(0.2,0.4,20)
@@ -13900,7 +13887,7 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
  *     #ayes = np.linspace(0.2,0.4,20)
  *     #ys = np.linspace(1E-3,5,80)
  *     ss = np.linspace(-5,5,30)             # <<<<<<<<<<<<<<
- *     ys = np.geomspace(0.05,20,50)
+ *     ys = np.geomspace(0.05,50,80)
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
@@ -13917,7 +13904,7 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
   /* "nakanoplots.py":436
  *     #ys = np.linspace(1E-3,5,80)
  *     ss = np.linspace(-5,5,30)
- *     ys = np.geomspace(0.05,20,50)             # <<<<<<<<<<<<<<
+ *     ys = np.geomspace(0.05,50,80)             # <<<<<<<<<<<<<<
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
  *     z_c = 10.
  */
@@ -13934,7 +13921,7 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
 
   /* "nakanoplots.py":437
  *     ss = np.linspace(-5,5,30)
- *     ys = np.geomspace(0.05,20,50)
+ *     ys = np.geomspace(0.05,50,80)
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)             # <<<<<<<<<<<<<<
  *     z_c = 10.
  *     a_c = 0.6
@@ -13943,7 +13930,7 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
   __pyx_v_y = __pyx_float_10_;
 
   /* "nakanoplots.py":438
- *     ys = np.geomspace(0.05,20,50)
+ *     ys = np.geomspace(0.05,50,80)
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
  *     z_c = 10.             # <<<<<<<<<<<<<<
  *     a_c = 0.6
@@ -14903,7 +14890,7 @@ static PyObject *__pyx_pf_11nakanoplots_16GenE_vs_a(CYTHON_UNUSED PyObject *__py
  * 
  * def GenE_vs_a():             # <<<<<<<<<<<<<<
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]
+ *     ns=[0.05]
  */
 
   /* function exit code */
@@ -26648,31 +26635,34 @@ static PyObject *__pyx_pf_11nakanoplots_30PoolParty(CYTHON_UNUSED PyObject *__py
   /* "nakanoplots.py":903
  * 
  *     #For E vs alpha plots
- *     ns = [0.]             # <<<<<<<<<<<<<<
- *     Us = np.linspace(1E-3,40,80)
- *     #Us = np.geomspace(1E-10,1,100) #study small U behavior
+ *     ns = [0.,0.05]             # <<<<<<<<<<<<<<
+ *     #Us = np.linspace(1E-3,40,80)
+ *     Us = np.geomspace(1E-10,1,100) #study small U behavior
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 903, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 903, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_float_0_);
   __Pyx_GIVEREF(__pyx_float_0_);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_float_0_);
+  __Pyx_INCREF(__pyx_float_0_05);
+  __Pyx_GIVEREF(__pyx_float_0_05);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_float_0_05);
   __pyx_v_ns = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "nakanoplots.py":904
- *     #For E vs alpha plots
- *     ns = [0.]
- *     Us = np.linspace(1E-3,40,80)             # <<<<<<<<<<<<<<
- *     #Us = np.geomspace(1E-10,1,100) #study small U behavior
+  /* "nakanoplots.py":905
+ *     ns = [0.,0.05]
+ *     #Us = np.linspace(1E-3,40,80)
+ *     Us = np.geomspace(1E-10,1,100) #study small U behavior             # <<<<<<<<<<<<<<
  * 
+ *     #Phase diagram capturing edge of horn
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 904, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 905, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_linspace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 904, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_geomspace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 905, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__61, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 904, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__61, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 905, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_Us = __pyx_t_1;
@@ -27059,7 +27049,7 @@ static PyObject *__pyx_pf_11nakanoplots_30PoolParty(CYTHON_UNUSED PyObject *__py
 
           /* "nakanoplots.py":934
  * 
- *         #results = pool.map(nag.min_E_avar_inf, job_args)
+ *         #results = pool.map(nag.min_E_avar_inf, job_args) #gives same answer as just fixing a at a=0 or a=1
  *         results = pool.map(nag.min_E_inf, job_args)             # <<<<<<<<<<<<<<
  * 
  *         #bipolaron run for finite y
@@ -33908,7 +33898,7 @@ static PyObject *__pyx_pf_11nakanoplots_34f_r_special(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "nakanoplots.py":1123
+/* "nakanoplots.py":1122
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg
  * def DensityPlot3D(a=1,y=1,s=1):             # <<<<<<<<<<<<<<
@@ -33970,7 +33960,7 @@ static PyObject *__pyx_pw_11nakanoplots_37DensityPlot3D(PyObject *__pyx_self, Py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "DensityPlot3D") < 0)) __PYX_ERR(0, 1123, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "DensityPlot3D") < 0)) __PYX_ERR(0, 1122, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -33990,7 +33980,7 @@ static PyObject *__pyx_pw_11nakanoplots_37DensityPlot3D(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("DensityPlot3D", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1123, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("DensityPlot3D", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1122, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("nakanoplots.DensityPlot3D", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -34003,7 +33993,7 @@ static PyObject *__pyx_pw_11nakanoplots_37DensityPlot3D(PyObject *__pyx_self, Py
   return __pyx_r;
 }
 
-/* "nakanoplots.py":1126
+/* "nakanoplots.py":1125
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  *     def rho(rx,ry,rz,s,y):             # <<<<<<<<<<<<<<
@@ -34055,29 +34045,29 @@ static PyObject *__pyx_pw_11nakanoplots_13DensityPlot3D_1rho(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ry)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 1); __PYX_ERR(0, 1126, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 1); __PYX_ERR(0, 1125, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rz)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 2); __PYX_ERR(0, 1126, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 2); __PYX_ERR(0, 1125, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_s)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 3); __PYX_ERR(0, 1126, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 3); __PYX_ERR(0, 1125, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 4); __PYX_ERR(0, 1126, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, 4); __PYX_ERR(0, 1125, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "rho") < 0)) __PYX_ERR(0, 1126, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "rho") < 0)) __PYX_ERR(0, 1125, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -34096,7 +34086,7 @@ static PyObject *__pyx_pw_11nakanoplots_13DensityPlot3D_1rho(PyObject *__pyx_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1126, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("rho", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1125, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("nakanoplots.DensityPlot3D.rho", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -34124,7 +34114,7 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rho", 0);
 
-  /* "nakanoplots.py":1127
+  /* "nakanoplots.py":1126
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  *     def rho(rx,ry,rz,s,y):
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))             # <<<<<<<<<<<<<<
@@ -34132,19 +34122,19 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Power(__pyx_v_s, __pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_s, __pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Negative(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Negative(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -34160,33 +34150,33 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_2, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_2, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyFloat_DivideCObj(__pyx_float_1_, __pyx_t_2, 1., 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyFloat_DivideCObj(__pyx_float_1_, __pyx_t_2, 1., 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_rx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_rx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyNumber_Power(__pyx_v_ry, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Power(__pyx_v_ry, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -34202,27 +34192,27 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_6, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_v_y, __pyx_int_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_v_y, __pyx_int_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyNumber_Subtract(__pyx_v_rz, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Subtract(__pyx_v_rz, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Power(__pyx_t_6, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_t_6, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Negative(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Negative(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -34238,23 +34228,23 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_v_y, __pyx_int_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_v_y, __pyx_int_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_rz, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_rz, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Power(__pyx_t_1, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_t_1, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -34270,30 +34260,30 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_6, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_rz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_rz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_int_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_int_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Add(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Negative(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -34309,17 +34299,17 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Add(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1127, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -34327,7 +34317,7 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "nakanoplots.py":1126
+  /* "nakanoplots.py":1125
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  *     def rho(rx,ry,rz,s,y):             # <<<<<<<<<<<<<<
@@ -34352,7 +34342,7 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_rho(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "nakanoplots.py":1129
+/* "nakanoplots.py":1128
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):             # <<<<<<<<<<<<<<
@@ -34411,41 +34401,41 @@ static PyObject *__pyx_pw_11nakanoplots_13DensityPlot3D_3nak_f_k(PyObject *__pyx
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ky)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 1); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 1); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_kz)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 2); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 2); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 3); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 3); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 4); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 4); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_s)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 5); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 5); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_alf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 6); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, 6); __PYX_ERR(0, 1128, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "nak_f_k") < 0)) __PYX_ERR(0, 1129, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "nak_f_k") < 0)) __PYX_ERR(0, 1128, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
@@ -34468,7 +34458,7 @@ static PyObject *__pyx_pw_11nakanoplots_13DensityPlot3D_3nak_f_k(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1129, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("nak_f_k", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1128, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("nakanoplots.DensityPlot3D.nak_f_k", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -34498,41 +34488,41 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("nak_f_k", 0);
 
-  /* "nakanoplots.py":1131
+  /* "nakanoplots.py":1130
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):
  *         '''Phonon displacement function f(kx,ky,kz) for the Nakano calc'''
  *         numer = np.exp(-0.25* (1-a)**2 * (kx**2+ky**2+kz**2)) * (np.cos(0.5*(1-a)* y*kz) + np.exp(-y**2/2) ) + np.exp(-0.25*(1+a**2)*(kx**2+ky**2+kz**2)) * (np.cos(0.5* (1+a)* y*kz)+ np.exp(-y**2/2) )             # <<<<<<<<<<<<<<
  *         denom = 1 + (a/s)**2* (kx**2+ky**2+kz**2) + np.exp(-a**2 * (kx**2+ky**2+kz**2)/2) / (1+ np.exp(-y**2/2) ) * (np.cos(a*y*kz)+ np.exp(-y**2/2) )
  *         return s* np.sqrt(4*np.pi*alf)/(1+np.exp(-y**2/2)) * numer/denom * 1/ np.sqrt(kx**2+ky**2+kz**2) #setting V/l^3 = 1
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_SubtractCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Power(__pyx_t_2, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_t_2, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_float_neg_0_25, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_float_neg_0_25, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -34549,23 +34539,23 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_cos); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_cos); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_SubtractCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_SubtractCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_v_kz); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_v_kz); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -34581,20 +34571,20 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -34610,45 +34600,45 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_a, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_a, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_float_neg_0_25, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_float_neg_0_25, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyNumber_Add(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -34665,23 +34655,23 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_5 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_v_a, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_kz); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_kz); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -34697,20 +34687,20 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_6, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_7, __pyx_int_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_7, __pyx_int_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -34726,86 +34716,86 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_2 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_numer = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "nakanoplots.py":1132
+  /* "nakanoplots.py":1131
  *         '''Phonon displacement function f(kx,ky,kz) for the Nakano calc'''
  *         numer = np.exp(-0.25* (1-a)**2 * (kx**2+ky**2+kz**2)) * (np.cos(0.5*(1-a)* y*kz) + np.exp(-y**2/2) ) + np.exp(-0.25*(1+a**2)*(kx**2+ky**2+kz**2)) * (np.cos(0.5* (1+a)* y*kz)+ np.exp(-y**2/2) )
  *         denom = 1 + (a/s)**2* (kx**2+ky**2+kz**2) + np.exp(-a**2 * (kx**2+ky**2+kz**2)/2) / (1+ np.exp(-y**2/2) ) * (np.cos(a*y*kz)+ np.exp(-y**2/2) )             # <<<<<<<<<<<<<<
  *         return s* np.sqrt(4*np.pi*alf)/(1+np.exp(-y**2/2)) * numer/denom * 1/ np.sqrt(kx**2+ky**2+kz**2) #setting V/l^3 = 1
  * 
  */
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_v_a, __pyx_v_s); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_v_a, __pyx_v_s); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyNumber_Power(__pyx_t_6, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_t_6, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_4, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_4, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_a, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_a, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Add(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -34821,20 +34811,20 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -34850,24 +34840,24 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_5 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_5, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_5, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_v_a, __pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_v_a, __pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_v_kz); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_v_kz); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -34883,20 +34873,20 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyNumber_Negative(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Negative(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_7, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_7, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -34912,25 +34902,25 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_2 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_7, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_denom = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "nakanoplots.py":1133
+  /* "nakanoplots.py":1132
  *         numer = np.exp(-0.25* (1-a)**2 * (kx**2+ky**2+kz**2)) * (np.cos(0.5*(1-a)* y*kz) + np.exp(-y**2/2) ) + np.exp(-0.25*(1+a**2)*(kx**2+ky**2+kz**2)) * (np.cos(0.5* (1+a)* y*kz)+ np.exp(-y**2/2) )
  *         denom = 1 + (a/s)**2* (kx**2+ky**2+kz**2) + np.exp(-a**2 * (kx**2+ky**2+kz**2)/2) / (1+ np.exp(-y**2/2) ) * (np.cos(a*y*kz)+ np.exp(-y**2/2) )
  *         return s* np.sqrt(4*np.pi*alf)/(1+np.exp(-y**2/2)) * numer/denom * 1/ np.sqrt(kx**2+ky**2+kz**2) #setting V/l^3 = 1             # <<<<<<<<<<<<<<
@@ -34938,20 +34928,20 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
  *     fig = plt.figure()
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_int_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_int_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_alf); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_alf); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -34967,23 +34957,23 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_2, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_5);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Multiply(__pyx_v_s, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_v_s, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_exp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_exp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Power(__pyx_v_y, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = PyNumber_Negative(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Negative(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -34999,41 +34989,41 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_4, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddCObj(__pyx_int_1, __pyx_t_4, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_v_numer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_v_numer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_v_denom); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_v_denom); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_int_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_int_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Power(__pyx_v_kx, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_ky, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_kz, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -35050,10 +35040,10 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_1, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -35061,7 +35051,7 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "nakanoplots.py":1129
+  /* "nakanoplots.py":1128
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):             # <<<<<<<<<<<<<<
@@ -35088,7 +35078,7 @@ static PyObject *__pyx_pf_11nakanoplots_13DensityPlot3D_2nak_f_k(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "nakanoplots.py":1123
+/* "nakanoplots.py":1122
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg
  * def DensityPlot3D(a=1,y=1,s=1):             # <<<<<<<<<<<<<<
@@ -35128,40 +35118,40 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("DensityPlot3D", 0);
 
-  /* "nakanoplots.py":1126
+  /* "nakanoplots.py":1125
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  *     def rho(rx,ry,rz,s,y):             # <<<<<<<<<<<<<<
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_13DensityPlot3D_1rho, 0, __pyx_n_s_DensityPlot3D_locals_rho, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__73)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1126, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_13DensityPlot3D_1rho, 0, __pyx_n_s_DensityPlot3D_locals_rho, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__73)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rho = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "nakanoplots.py":1129
+  /* "nakanoplots.py":1128
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):             # <<<<<<<<<<<<<<
  *         '''Phonon displacement function f(kx,ky,kz) for the Nakano calc'''
  *         numer = np.exp(-0.25* (1-a)**2 * (kx**2+ky**2+kz**2)) * (np.cos(0.5*(1-a)* y*kz) + np.exp(-y**2/2) ) + np.exp(-0.25*(1+a**2)*(kx**2+ky**2+kz**2)) * (np.cos(0.5* (1+a)* y*kz)+ np.exp(-y**2/2) )
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_13DensityPlot3D_3nak_f_k, 0, __pyx_n_s_DensityPlot3D_locals_nak_f_k, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__75)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1129, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_13DensityPlot3D_3nak_f_k, 0, __pyx_n_s_DensityPlot3D_locals_nak_f_k, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__75)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nak_f_k = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "nakanoplots.py":1135
+  /* "nakanoplots.py":1134
  *         return s* np.sqrt(4*np.pi*alf)/(1+np.exp(-y**2/2)) * numer/denom * 1/ np.sqrt(kx**2+ky**2+kz**2) #setting V/l^3 = 1
  * 
  *     fig = plt.figure()             # <<<<<<<<<<<<<<
  *     ax = fig.add_subplot(111, projection='3d')
  *     rmax = 3
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_plt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1135, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_plt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_figure); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1135, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_figure); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -35176,32 +35166,32 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1135, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_fig = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "nakanoplots.py":1136
+  /* "nakanoplots.py":1135
  * 
  *     fig = plt.figure()
  *     ax = fig.add_subplot(111, projection='3d')             # <<<<<<<<<<<<<<
  *     rmax = 3
  *     dr = 0.1
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_fig, __pyx_n_s_add_subplot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1136, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_fig, __pyx_n_s_add_subplot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1136, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_projection, __pyx_kp_s_3d) < 0) __PYX_ERR(0, 1136, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__76, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1136, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_projection, __pyx_kp_s_3d) < 0) __PYX_ERR(0, 1135, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__76, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_ax = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "nakanoplots.py":1137
+  /* "nakanoplots.py":1136
  *     fig = plt.figure()
  *     ax = fig.add_subplot(111, projection='3d')
  *     rmax = 3             # <<<<<<<<<<<<<<
@@ -35211,7 +35201,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __Pyx_INCREF(__pyx_int_3);
   __pyx_v_rmax = __pyx_int_3;
 
-  /* "nakanoplots.py":1138
+  /* "nakanoplots.py":1137
  *     ax = fig.add_subplot(111, projection='3d')
  *     rmax = 3
  *     dr = 0.1             # <<<<<<<<<<<<<<
@@ -35220,21 +35210,21 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
  */
   __pyx_v_dr = 0.1;
 
-  /* "nakanoplots.py":1139
+  /* "nakanoplots.py":1138
  *     rmax = 3
  *     dr = 0.1
  *     rs = np.arange(-rmax,rmax, dr) #shift away from 0             # <<<<<<<<<<<<<<
  *     ndivs = (2*rmax/dr)*1j
  *     X, Y, Z = np.mgrid[-rmax:rmax:ndivs, -rmax:rmax:ndivs, -rmax:rmax:ndivs]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1139, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1139, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1139, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dr); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1139, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dr); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_6 = 0;
@@ -35251,7 +35241,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_t_3, __pyx_v_rmax, __pyx_t_4};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1139, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -35261,7 +35251,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_t_3, __pyx_v_rmax, __pyx_t_4};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1139, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -35269,7 +35259,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1139, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -35283,7 +35273,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_4);
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1139, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -35291,58 +35281,58 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __pyx_v_rs = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "nakanoplots.py":1140
+  /* "nakanoplots.py":1139
  *     dr = 0.1
  *     rs = np.arange(-rmax,rmax, dr) #shift away from 0
  *     ndivs = (2*rmax/dr)*1j             # <<<<<<<<<<<<<<
  *     X, Y, Z = np.mgrid[-rmax:rmax:ndivs, -rmax:rmax:ndivs, -rmax:rmax:ndivs]
  * 
  */
-  __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_1 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_7, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ndivs = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "nakanoplots.py":1141
+  /* "nakanoplots.py":1140
  *     rs = np.arange(-rmax,rmax, dr) #shift away from 0
  *     ndivs = (2*rmax/dr)*1j
  *     X, Y, Z = np.mgrid[-rmax:rmax:ndivs, -rmax:rmax:ndivs, -rmax:rmax:ndivs]             # <<<<<<<<<<<<<<
  * 
  *     dens = rho(X, Y, Z,s,y)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_mgrid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_mgrid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_7 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_4 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Negative(__pyx_v_rmax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_3 = PySlice_New(__pyx_t_2, __pyx_v_rmax, __pyx_v_ndivs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_7);
@@ -35353,7 +35343,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __pyx_t_7 = 0;
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -35363,7 +35353,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 1141, __pyx_L1_error)
+      __PYX_ERR(0, 1140, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -35379,17 +35369,17 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1141, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1141, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_7 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1141, __pyx_L1_error)
+    __pyx_t_7 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -35399,7 +35389,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     __Pyx_GOTREF(__pyx_t_1);
     index = 2; __pyx_t_4 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 3) < 0) __PYX_ERR(0, 1141, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 3) < 0) __PYX_ERR(0, 1140, __pyx_L1_error)
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L4_unpacking_done;
@@ -35407,7 +35397,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 1141, __pyx_L1_error)
+    __PYX_ERR(0, 1140, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_X = __pyx_t_2;
@@ -35417,19 +35407,19 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __pyx_v_Z = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "nakanoplots.py":1143
+  /* "nakanoplots.py":1142
  *     X, Y, Z = np.mgrid[-rmax:rmax:ndivs, -rmax:rmax:ndivs, -rmax:rmax:ndivs]
  * 
  *     dens = rho(X, Y, Z,s,y)             # <<<<<<<<<<<<<<
  *     iso_val=0.5
  *     verts, faces, _, _ = measure.marching_cubes_lewiner(dens, iso_val, spacing=(0.1, 0.1, 0.1))
  */
-  __pyx_t_3 = __pyx_pf_11nakanoplots_13DensityPlot3D_rho(__pyx_v_rho, __pyx_v_X, __pyx_v_Y, __pyx_v_Z, __pyx_v_s, __pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1143, __pyx_L1_error)
+  __pyx_t_3 = __pyx_pf_11nakanoplots_13DensityPlot3D_rho(__pyx_v_rho, __pyx_v_X, __pyx_v_Y, __pyx_v_Z, __pyx_v_s, __pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_dens = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "nakanoplots.py":1144
+  /* "nakanoplots.py":1143
  * 
  *     dens = rho(X, Y, Z,s,y)
  *     iso_val=0.5             # <<<<<<<<<<<<<<
@@ -35438,21 +35428,21 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
  */
   __pyx_v_iso_val = 0.5;
 
-  /* "nakanoplots.py":1145
+  /* "nakanoplots.py":1144
  *     dens = rho(X, Y, Z,s,y)
  *     iso_val=0.5
  *     verts, faces, _, _ = measure.marching_cubes_lewiner(dens, iso_val, spacing=(0.1, 0.1, 0.1))             # <<<<<<<<<<<<<<
  * 
  *     ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], cmap='Spectral', lw=1)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_measure); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_measure); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_marching_cubes_lewiner); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_marching_cubes_lewiner); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_iso_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_iso_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_dens);
   __Pyx_GIVEREF(__pyx_v_dens);
@@ -35460,10 +35450,10 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_spacing, __pyx_tuple__77) < 0) __PYX_ERR(0, 1145, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_spacing, __pyx_tuple__77) < 0) __PYX_ERR(0, 1144, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -35474,7 +35464,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     if (unlikely(size != 4)) {
       if (size > 4) __Pyx_RaiseTooManyValuesError(4);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 1145, __pyx_L1_error)
+      __PYX_ERR(0, 1144, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -35497,7 +35487,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
       Py_ssize_t i;
       PyObject** temps[4] = {&__pyx_t_3,&__pyx_t_1,&__pyx_t_4,&__pyx_t_7};
       for (i=0; i < 4; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 1145, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 1144, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -35507,7 +35497,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   } else {
     Py_ssize_t index = -1;
     PyObject** temps[4] = {&__pyx_t_3,&__pyx_t_1,&__pyx_t_4,&__pyx_t_7};
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1145, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -35516,7 +35506,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
       __Pyx_GOTREF(item);
       *(temps[index]) = item;
     }
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_5), 4) < 0) __PYX_ERR(0, 1145, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_5), 4) < 0) __PYX_ERR(0, 1144, __pyx_L1_error)
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L6_unpacking_done;
@@ -35524,7 +35514,7 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 1145, __pyx_L1_error)
+    __PYX_ERR(0, 1144, __pyx_L1_error)
     __pyx_L6_unpacking_done:;
   }
   __pyx_v_verts = __pyx_t_3;
@@ -35536,22 +35526,22 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __Pyx_DECREF_SET(__pyx_v__, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "nakanoplots.py":1147
+  /* "nakanoplots.py":1146
  *     verts, faces, _, _ = measure.marching_cubes_lewiner(dens, iso_val, spacing=(0.1, 0.1, 0.1))
  * 
  *     ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], cmap='Spectral', lw=1)             # <<<<<<<<<<<<<<
  * 
  *     '''
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_plot_trisurf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_plot_trisurf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__79); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__79); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__80); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__80); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__81); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_verts, __pyx_tuple__81); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7);
@@ -35565,27 +35555,27 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   __pyx_t_7 = 0;
   __pyx_t_4 = 0;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cmap, __pyx_n_s_Spectral) < 0) __PYX_ERR(0, 1147, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lw, __pyx_int_1) < 0) __PYX_ERR(0, 1147, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cmap, __pyx_n_s_Spectral) < 0) __PYX_ERR(0, 1146, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lw, __pyx_int_1) < 0) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "nakanoplots.py":1161
+  /* "nakanoplots.py":1160
  *     ax.plot_surface(X1, Y1, np.full(X1.shape,-2.01), rstride=1, cstride=1, facecolors=arr)
  *     '''
  *     plt.show()             # <<<<<<<<<<<<<<
  * 
  * ###############################################################################################################################
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1161, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1161, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -35600,12 +35590,12 @@ static PyObject *__pyx_pf_11nakanoplots_36DensityPlot3D(CYTHON_UNUSED PyObject *
   }
   __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1161, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "nakanoplots.py":1123
+  /* "nakanoplots.py":1122
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg
  * def DensityPlot3D(a=1,y=1,s=1):             # <<<<<<<<<<<<<<
@@ -35933,8 +35923,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_data_nak_fr_para_csv, __pyx_k_data_nak_fr_para_csv, sizeof(__pyx_k_data_nak_fr_para_csv), 0, 0, 1, 0},
   {&__pyx_kp_s_data_nak_mats_csv, __pyx_k_data_nak_mats_csv, sizeof(__pyx_k_data_nak_mats_csv), 0, 0, 1, 0},
   {&__pyx_kp_s_data_nak_mats_inf_csv, __pyx_k_data_nak_mats_inf_csv, sizeof(__pyx_k_data_nak_mats_inf_csv), 0, 0, 1, 0},
-  {&__pyx_kp_s_data_nak_smallU_yfin_csv, __pyx_k_data_nak_smallU_yfin_csv, sizeof(__pyx_k_data_nak_smallU_yfin_csv), 0, 0, 1, 0},
-  {&__pyx_kp_s_data_nak_smallU_yinf_csv, __pyx_k_data_nak_smallU_yinf_csv, sizeof(__pyx_k_data_nak_smallU_yinf_csv), 0, 0, 1, 0},
+  {&__pyx_kp_s_data_nak_smallU_yfin_s10_csv, __pyx_k_data_nak_smallU_yfin_s10_csv, sizeof(__pyx_k_data_nak_smallU_yfin_s10_csv), 0, 0, 1, 0},
+  {&__pyx_kp_s_data_nak_smallU_yinf_s10_csv, __pyx_k_data_nak_smallU_yinf_s10_csv, sizeof(__pyx_k_data_nak_smallU_yinf_s10_csv), 0, 0, 1, 0},
   {&__pyx_kp_s_data_nakano_yfin_U15_eta0_1_csv, __pyx_k_data_nakano_yfin_U15_eta0_1_csv, sizeof(__pyx_k_data_nakano_yfin_U15_eta0_1_csv), 0, 0, 1, 0},
   {&__pyx_kp_s_data_nakano_yfin_U20_str_csv, __pyx_k_data_nakano_yfin_U20_str_csv, sizeof(__pyx_k_data_nakano_yfin_U20_str_csv), 0, 0, 1, 0},
   {&__pyx_kp_s_data_nakano_yfin_U40_csv, __pyx_k_data_nakano_yfin_U40_csv, sizeof(__pyx_k_data_nakano_yfin_U40_csv), 0, 0, 1, 0},
@@ -36107,7 +36097,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_marching_cubes_lewiner, __pyx_k_marching_cubes_lewiner, sizeof(__pyx_k_marching_cubes_lewiner), 0, 0, 1, 1},
   {&__pyx_n_s_mark_inset, __pyx_k_mark_inset, sizeof(__pyx_k_mark_inset), 0, 0, 1, 1},
   {&__pyx_n_s_marker, __pyx_k_marker, sizeof(__pyx_k_marker), 0, 0, 1, 1},
-  {&__pyx_n_s_matplotlib__png, __pyx_k_matplotlib__png, sizeof(__pyx_k_matplotlib__png), 0, 0, 1, 1},
   {&__pyx_n_s_matplotlib_cbook, __pyx_k_matplotlib_cbook, sizeof(__pyx_k_matplotlib_cbook), 0, 0, 1, 1},
   {&__pyx_n_s_matplotlib_colors, __pyx_k_matplotlib_colors, sizeof(__pyx_k_matplotlib_colors), 0, 0, 1, 1},
   {&__pyx_n_s_matplotlib_image, __pyx_k_matplotlib_image, sizeof(__pyx_k_matplotlib_image), 0, 0, 1, 1},
@@ -36202,7 +36191,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_r_y, __pyx_k_r_y, sizeof(__pyx_k_r_y), 0, 0, 1, 0},
   {&__pyx_kp_s_r_z, __pyx_k_r_z, sizeof(__pyx_k_r_z), 0, 0, 1, 0},
   {&__pyx_n_s_read_csv, __pyx_k_read_csv, sizeof(__pyx_k_read_csv), 0, 0, 1, 1},
-  {&__pyx_n_s_read_png, __pyx_k_read_png, sizeof(__pyx_k_read_png), 0, 0, 1, 1},
   {&__pyx_n_s_real, __pyx_k_real, sizeof(__pyx_k_real), 0, 0, 1, 1},
   {&__pyx_n_s_realval, __pyx_k_realval, sizeof(__pyx_k_realval), 0, 0, 1, 1},
   {&__pyx_n_s_red, __pyx_k_red, sizeof(__pyx_k_red), 0, 0, 1, 1},
@@ -36551,7 +36539,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__28);
 
   /* "nakanoplots.py":432
- *     Us = [0.001, 0.01, 0.1, 1] #corresponds to alpha = 1,5,8,10
+ *     Us = [0.01] #corresponds to alpha = 1,5,8,10
  *     #Us = [20.]
  *     ayes = np.geomspace(1E-5,1,100)             # <<<<<<<<<<<<<<
  *     #ayes = np.linspace(0.2,0.4,20)
@@ -36565,7 +36553,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     #ayes = np.linspace(0.2,0.4,20)
  *     #ys = np.linspace(1E-3,5,80)
  *     ss = np.linspace(-5,5,30)             # <<<<<<<<<<<<<<
- *     ys = np.geomspace(0.05,20,50)
+ *     ys = np.geomspace(0.05,50,80)
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
  */
   __pyx_tuple__30 = PyTuple_Pack(3, __pyx_int_neg_5, __pyx_int_5, __pyx_int_30); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 435, __pyx_L1_error)
@@ -36575,11 +36563,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "nakanoplots.py":436
  *     #ys = np.linspace(1E-3,5,80)
  *     ss = np.linspace(-5,5,30)
- *     ys = np.geomspace(0.05,20,50)             # <<<<<<<<<<<<<<
+ *     ys = np.geomspace(0.05,50,80)             # <<<<<<<<<<<<<<
  *     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
  *     z_c = 10.
  */
-  __pyx_tuple__31 = PyTuple_Pack(3, __pyx_float_0_05, __pyx_int_20, __pyx_int_50); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(3, __pyx_float_0_05, __pyx_int_50, __pyx_int_80); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
@@ -36805,14 +36793,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__60);
   __Pyx_GIVEREF(__pyx_tuple__60);
 
-  /* "nakanoplots.py":904
- *     #For E vs alpha plots
- *     ns = [0.]
- *     Us = np.linspace(1E-3,40,80)             # <<<<<<<<<<<<<<
- *     #Us = np.geomspace(1E-10,1,100) #study small U behavior
+  /* "nakanoplots.py":905
+ *     ns = [0.,0.05]
+ *     #Us = np.linspace(1E-3,40,80)
+ *     Us = np.geomspace(1E-10,1,100) #study small U behavior             # <<<<<<<<<<<<<<
  * 
+ *     #Phase diagram capturing edge of horn
  */
-  __pyx_tuple__61 = PyTuple_Pack(3, __pyx_float_1Eneg_3, __pyx_int_40, __pyx_int_80); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 904, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(3, __pyx_float_1Eneg_10, __pyx_int_1, __pyx_int_100); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 905, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
   __Pyx_GIVEREF(__pyx_tuple__61);
 
@@ -36885,69 +36873,69 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__71);
   __Pyx_GIVEREF(__pyx_tuple__71);
 
-  /* "nakanoplots.py":1126
+  /* "nakanoplots.py":1125
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  *     def rho(rx,ry,rz,s,y):             # <<<<<<<<<<<<<<
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  */
-  __pyx_tuple__72 = PyTuple_Pack(5, __pyx_n_s_rx, __pyx_n_s_ry, __pyx_n_s_rz, __pyx_n_s_s, __pyx_n_s_y); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(0, 1126, __pyx_L1_error)
+  __pyx_tuple__72 = PyTuple_Pack(5, __pyx_n_s_rx, __pyx_n_s_ry, __pyx_n_s_rz, __pyx_n_s_s, __pyx_n_s_y); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__72);
   __Pyx_GIVEREF(__pyx_tuple__72);
-  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_rho, 1126, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) __PYX_ERR(0, 1126, __pyx_L1_error)
+  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_rho, 1125, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) __PYX_ERR(0, 1125, __pyx_L1_error)
 
-  /* "nakanoplots.py":1129
+  /* "nakanoplots.py":1128
  *         return 1./(s**3 * (1 + np.exp(-y**2/2))) * np.exp(-(rx**2 + ry**2))* (np.exp(-(rz - y/2)**2) + np.exp(-(rz + y/2)**2) + 2*np.exp(-(rz**2 + y**2/2)))
  * 
  *     def nak_f_k(kx,ky,kz,a,y,s,alf):             # <<<<<<<<<<<<<<
  *         '''Phonon displacement function f(kx,ky,kz) for the Nakano calc'''
  *         numer = np.exp(-0.25* (1-a)**2 * (kx**2+ky**2+kz**2)) * (np.cos(0.5*(1-a)* y*kz) + np.exp(-y**2/2) ) + np.exp(-0.25*(1+a**2)*(kx**2+ky**2+kz**2)) * (np.cos(0.5* (1+a)* y*kz)+ np.exp(-y**2/2) )
  */
-  __pyx_tuple__74 = PyTuple_Pack(9, __pyx_n_s_kx, __pyx_n_s_ky, __pyx_n_s_kz, __pyx_n_s_a, __pyx_n_s_y, __pyx_n_s_s, __pyx_n_s_alf, __pyx_n_s_numer, __pyx_n_s_denom); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(0, 1129, __pyx_L1_error)
+  __pyx_tuple__74 = PyTuple_Pack(9, __pyx_n_s_kx, __pyx_n_s_ky, __pyx_n_s_kz, __pyx_n_s_a, __pyx_n_s_y, __pyx_n_s_s, __pyx_n_s_alf, __pyx_n_s_numer, __pyx_n_s_denom); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(0, 1128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__74);
   __Pyx_GIVEREF(__pyx_tuple__74);
-  __pyx_codeobj__75 = (PyObject*)__Pyx_PyCode_New(7, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__74, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_nak_f_k, 1129, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__75)) __PYX_ERR(0, 1129, __pyx_L1_error)
+  __pyx_codeobj__75 = (PyObject*)__Pyx_PyCode_New(7, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__74, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_nak_f_k, 1128, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__75)) __PYX_ERR(0, 1128, __pyx_L1_error)
 
-  /* "nakanoplots.py":1136
+  /* "nakanoplots.py":1135
  * 
  *     fig = plt.figure()
  *     ax = fig.add_subplot(111, projection='3d')             # <<<<<<<<<<<<<<
  *     rmax = 3
  *     dr = 0.1
  */
-  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_int_111); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 1136, __pyx_L1_error)
+  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_int_111); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__76);
   __Pyx_GIVEREF(__pyx_tuple__76);
 
-  /* "nakanoplots.py":1145
+  /* "nakanoplots.py":1144
  *     dens = rho(X, Y, Z,s,y)
  *     iso_val=0.5
  *     verts, faces, _, _ = measure.marching_cubes_lewiner(dens, iso_val, spacing=(0.1, 0.1, 0.1))             # <<<<<<<<<<<<<<
  * 
  *     ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], cmap='Spectral', lw=1)
  */
-  __pyx_tuple__77 = PyTuple_Pack(3, __pyx_float_0_1, __pyx_float_0_1, __pyx_float_0_1); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_tuple__77 = PyTuple_Pack(3, __pyx_float_0_1, __pyx_float_0_1, __pyx_float_0_1); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__77);
   __Pyx_GIVEREF(__pyx_tuple__77);
 
-  /* "nakanoplots.py":1147
+  /* "nakanoplots.py":1146
  *     verts, faces, _, _ = measure.marching_cubes_lewiner(dens, iso_val, spacing=(0.1, 0.1, 0.1))
  * 
  *     ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], cmap='Spectral', lw=1)             # <<<<<<<<<<<<<<
  * 
  *     '''
  */
-  __pyx_slice__78 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__78)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_slice__78 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__78)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__78);
   __Pyx_GIVEREF(__pyx_slice__78);
-  __pyx_tuple__79 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_0); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_tuple__79 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_0); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__79);
   __Pyx_GIVEREF(__pyx_tuple__79);
-  __pyx_tuple__80 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_1); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_tuple__80 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_1); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__80);
   __Pyx_GIVEREF(__pyx_tuple__80);
-  __pyx_tuple__81 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_2); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(0, 1147, __pyx_L1_error)
+  __pyx_tuple__81 = PyTuple_Pack(2, __pyx_slice__78, __pyx_int_2); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(0, 1146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__81);
   __Pyx_GIVEREF(__pyx_tuple__81);
 
@@ -37072,7 +37060,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * def GenE_vs_a():             # <<<<<<<<<<<<<<
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]
+ *     ns=[0.05]
  */
   __pyx_tuple__103 = PyTuple_Pack(23, __pyx_n_s_ns, __pyx_n_s_Us, __pyx_n_s_ayes, __pyx_n_s_ss, __pyx_n_s_ys, __pyx_n_s_y, __pyx_n_s_z_c, __pyx_n_s_a_c, __pyx_n_s_csvname, __pyx_n_s_df, __pyx_n_s_quantities, __pyx_n_s_i, __pyx_n_s_tic, __pyx_n_s_pool, __pyx_n_s_n, __pyx_n_s_U, __pyx_n_s_job_args, __pyx_n_s_results, __pyx_n_s_res, __pyx_n_s_name_2, __pyx_n_s_val, __pyx_n_s_toc, __pyx_n_s_data_2); if (unlikely(!__pyx_tuple__103)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__103);
@@ -37208,18 +37196,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__130);
   __Pyx_GIVEREF(__pyx_tuple__130);
 
-  /* "nakanoplots.py":1123
+  /* "nakanoplots.py":1122
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg
  * def DensityPlot3D(a=1,y=1,s=1):             # <<<<<<<<<<<<<<
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  */
-  __pyx_tuple__131 = PyTuple_Pack(21, __pyx_n_s_a, __pyx_n_s_y, __pyx_n_s_s, __pyx_n_s_rho, __pyx_n_s_rho, __pyx_n_s_nak_f_k, __pyx_n_s_nak_f_k, __pyx_n_s_fig, __pyx_n_s_ax, __pyx_n_s_rmax, __pyx_n_s_dr, __pyx_n_s_rs, __pyx_n_s_ndivs, __pyx_n_s_X, __pyx_n_s_Y, __pyx_n_s_Z, __pyx_n_s_dens, __pyx_n_s_iso_val, __pyx_n_s_verts, __pyx_n_s_faces, __pyx_n_s__114); if (unlikely(!__pyx_tuple__131)) __PYX_ERR(0, 1123, __pyx_L1_error)
+  __pyx_tuple__131 = PyTuple_Pack(21, __pyx_n_s_a, __pyx_n_s_y, __pyx_n_s_s, __pyx_n_s_rho, __pyx_n_s_rho, __pyx_n_s_nak_f_k, __pyx_n_s_nak_f_k, __pyx_n_s_fig, __pyx_n_s_ax, __pyx_n_s_rmax, __pyx_n_s_dr, __pyx_n_s_rs, __pyx_n_s_ndivs, __pyx_n_s_X, __pyx_n_s_Y, __pyx_n_s_Z, __pyx_n_s_dens, __pyx_n_s_iso_val, __pyx_n_s_verts, __pyx_n_s_faces, __pyx_n_s__114); if (unlikely(!__pyx_tuple__131)) __PYX_ERR(0, 1122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__131);
   __Pyx_GIVEREF(__pyx_tuple__131);
-  __pyx_codeobj__132 = (PyObject*)__Pyx_PyCode_New(3, 0, 21, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__131, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_DensityPlot3D, 1123, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__132)) __PYX_ERR(0, 1123, __pyx_L1_error)
-  __pyx_tuple__133 = PyTuple_Pack(3, ((PyObject *)__pyx_int_1), ((PyObject *)__pyx_int_1), ((PyObject *)__pyx_int_1)); if (unlikely(!__pyx_tuple__133)) __PYX_ERR(0, 1123, __pyx_L1_error)
+  __pyx_codeobj__132 = (PyObject*)__Pyx_PyCode_New(3, 0, 21, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__131, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_nakanoplots_py, __pyx_n_s_DensityPlot3D, 1122, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__132)) __PYX_ERR(0, 1122, __pyx_L1_error)
+  __pyx_tuple__133 = PyTuple_Pack(3, ((PyObject *)__pyx_int_1), ((PyObject *)__pyx_int_1), ((PyObject *)__pyx_int_1)); if (unlikely(!__pyx_tuple__133)) __PYX_ERR(0, 1122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__133);
   __Pyx_GIVEREF(__pyx_tuple__133);
   __Pyx_RefNannyFinishContext();
@@ -37269,6 +37257,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_float_0_348 = PyFloat_FromDouble(0.348); if (unlikely(!__pyx_float_0_348)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float_0_397 = PyFloat_FromDouble(0.397); if (unlikely(!__pyx_float_0_397)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float_1_185 = PyFloat_FromDouble(1.185); if (unlikely(!__pyx_float_1_185)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_1Eneg_10 = PyFloat_FromDouble(1E-10); if (unlikely(!__pyx_float_1Eneg_10)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float_3_75Eneg_2 = PyFloat_FromDouble(3.75E-2); if (unlikely(!__pyx_float_3_75Eneg_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float_8_18Eneg_2 = PyFloat_FromDouble(8.18E-2); if (unlikely(!__pyx_float_8_18Eneg_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float_8_26Eneg_2 = PyFloat_FromDouble(8.26E-2); if (unlikely(!__pyx_float_8_26Eneg_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -37296,7 +37285,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_int_14 = PyInt_FromLong(14); if (unlikely(!__pyx_int_14)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_20 = PyInt_FromLong(20); if (unlikely(!__pyx_int_20)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_30 = PyInt_FromLong(30); if (unlikely(!__pyx_int_30)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_40 = PyInt_FromLong(40); if (unlikely(!__pyx_int_40)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_45 = PyInt_FromLong(45); if (unlikely(!__pyx_int_45)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_50 = PyInt_FromLong(50); if (unlikely(!__pyx_int_50)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_60 = PyInt_FromLong(60); if (unlikely(!__pyx_int_60)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -38406,7 +38394,7 @@ if (!__Pyx_RefNanny) {
  * 
  * def GenE_vs_a():             # <<<<<<<<<<<<<<
  *     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
- *     ns=[0.]
+ *     ns=[0.05]
  */
   __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_17GenE_vs_a, 0, __pyx_n_s_GenE_vs_a, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__104)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -38532,8 +38520,8 @@ if (!__Pyx_RefNanny) {
  *     plt.show()
  * 
  * from mpl_toolkits.mplot3d import Axes3D             # <<<<<<<<<<<<<<
- * from matplotlib._png import read_png
  * from matplotlib.cbook import get_sample_data
+ * import matplotlib.image as mpimg
  */
   __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -38552,260 +38540,297 @@ if (!__Pyx_RefNanny) {
   /* "nakanoplots.py":1120
  * 
  * from mpl_toolkits.mplot3d import Axes3D
- * from matplotlib._png import read_png             # <<<<<<<<<<<<<<
- * from matplotlib.cbook import get_sample_data
+ * from matplotlib.cbook import get_sample_data             # <<<<<<<<<<<<<<
  * import matplotlib.image as mpimg
+ * def DensityPlot3D(a=1,y=1,s=1):
  */
   __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_INCREF(__pyx_n_s_read_png);
-  __Pyx_GIVEREF(__pyx_n_s_read_png);
-  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_read_png);
-  __pyx_t_7 = __Pyx_Import(__pyx_n_s_matplotlib__png, __pyx_t_3, -1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1120, __pyx_L1_error)
+  __Pyx_INCREF(__pyx_n_s_get_sample_data);
+  __Pyx_GIVEREF(__pyx_n_s_get_sample_data);
+  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_get_sample_data);
+  __pyx_t_7 = __Pyx_Import(__pyx_n_s_matplotlib_cbook, __pyx_t_3, -1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_7, __pyx_n_s_read_png); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1120, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_7, __pyx_n_s_get_sample_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_png, __pyx_t_3) < 0) __PYX_ERR(0, 1120, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_sample_data, __pyx_t_3) < 0) __PYX_ERR(0, 1120, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "nakanoplots.py":1121
  * from mpl_toolkits.mplot3d import Axes3D
- * from matplotlib._png import read_png
- * from matplotlib.cbook import get_sample_data             # <<<<<<<<<<<<<<
- * import matplotlib.image as mpimg
- * def DensityPlot3D(a=1,y=1,s=1):
- */
-  __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_INCREF(__pyx_n_s_get_sample_data);
-  __Pyx_GIVEREF(__pyx_n_s_get_sample_data);
-  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_n_s_get_sample_data);
-  __pyx_t_3 = __Pyx_Import(__pyx_n_s_matplotlib_cbook, __pyx_t_7, -1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_get_sample_data); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_sample_data, __pyx_t_7) < 0) __PYX_ERR(0, 1121, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "nakanoplots.py":1122
- * from matplotlib._png import read_png
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg             # <<<<<<<<<<<<<<
  * def DensityPlot3D(a=1,y=1,s=1):
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  */
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1122, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_n_s__18);
   __Pyx_GIVEREF(__pyx_n_s__18);
-  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s__18);
-  __pyx_t_7 = __Pyx_Import(__pyx_n_s_matplotlib_image, __pyx_t_3, -1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1122, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mpimg, __pyx_t_7) < 0) __PYX_ERR(0, 1122, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_n_s__18);
+  __pyx_t_3 = __Pyx_Import(__pyx_n_s_matplotlib_image, __pyx_t_7, -1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mpimg, __pyx_t_3) < 0) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "nakanoplots.py":1123
+  /* "nakanoplots.py":1122
  * from matplotlib.cbook import get_sample_data
  * import matplotlib.image as mpimg
  * def DensityPlot3D(a=1,y=1,s=1):             # <<<<<<<<<<<<<<
  *     '''Plot electron density rho(r) for nakano - plots the density rho just fine but can't seem to figure out how to visualize 2D and 3D plots together (i.e. force the contour plot to stay 2D and/or project images of them onto the boundary box xy and yz-planes.
  *         Workaround: produce .eps contour plots in Python, then read them into Mathematica to tidy up the visualization/graphing since Mathematica has better support for 3D graphics rendering'''
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_37DensityPlot3D, 0, __pyx_n_s_DensityPlot3D, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__132)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_7, __pyx_tuple__133);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DensityPlot3D, __pyx_t_7) < 0) __PYX_ERR(0, 1123, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11nakanoplots_37DensityPlot3D, 0, __pyx_n_s_DensityPlot3D, NULL, __pyx_n_s_nakanoplots, __pyx_d, ((PyObject *)__pyx_codeobj__132)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1122, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__133);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DensityPlot3D, __pyx_t_3) < 0) __PYX_ERR(0, 1122, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "nakanoplots.py":1165
+  /* "nakanoplots.py":1164
  * ###############################################################################################################################
  * 
  * if __name__ == '__main__':             # <<<<<<<<<<<<<<
  *     import pandas as pd
  *     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1165, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_7, __pyx_n_s_main, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 1165, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1164, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_n_s_main, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 1164, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "nakanoplots.py":1166
+    /* "nakanoplots.py":1165
  * 
  * if __name__ == '__main__':
  *     import pandas as pd             # <<<<<<<<<<<<<<
  *     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1
  *     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1
  */
-    __pyx_t_7 = __Pyx_Import(__pyx_n_s_pandas, 0, -1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1166, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_pd, __pyx_t_7) < 0) __PYX_ERR(0, 1166, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_3 = __Pyx_Import(__pyx_n_s_pandas, 0, -1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1165, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_pd, __pyx_t_3) < 0) __PYX_ERR(0, 1165, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "nakanoplots.py":1167
+    /* "nakanoplots.py":1166
  * if __name__ == '__main__':
  *     import pandas as pd
  *     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1             # <<<<<<<<<<<<<<
  *     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1
  *     csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname, __pyx_kp_s_data_nakano_yinf_U60_eta0_1_csv) < 0) __PYX_ERR(0, 1167, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname, __pyx_kp_s_data_nakano_yinf_U60_eta0_1_csv) < 0) __PYX_ERR(0, 1166, __pyx_L1_error)
 
-    /* "nakanoplots.py":1168
+    /* "nakanoplots.py":1167
  *     import pandas as pd
  *     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1
  *     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1             # <<<<<<<<<<<<<<
  *     csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08
  *     csvname1d = "./data/nakano_yinf_U50.csv"
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1b, __pyx_kp_s_data_nakano_yfin_U60_eta0_1_csv) < 0) __PYX_ERR(0, 1168, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1b, __pyx_kp_s_data_nakano_yfin_U60_eta0_1_csv) < 0) __PYX_ERR(0, 1167, __pyx_L1_error)
 
-    /* "nakanoplots.py":1169
+    /* "nakanoplots.py":1168
  *     csvname = "./data/nakano_yinf_U60_eta0-1.csv" #minimizing between a=0 and a=1
  *     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1
  *     csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08             # <<<<<<<<<<<<<<
  *     csvname1d = "./data/nakano_yinf_U50.csv"
  *     csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1c, __pyx_kp_s_data_nakano_yfin_U50_csv) < 0) __PYX_ERR(0, 1169, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1c, __pyx_kp_s_data_nakano_yfin_U50_csv) < 0) __PYX_ERR(0, 1168, __pyx_L1_error)
 
-    /* "nakanoplots.py":1170
+    /* "nakanoplots.py":1169
  *     csvname1b = "./data/nakano_yfin_U60_eta0-1.csv" #eta extends up to 0.1
  *     csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08
  *     csvname1d = "./data/nakano_yinf_U50.csv"             # <<<<<<<<<<<<<<
  *     csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
  *     csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1d, __pyx_kp_s_data_nakano_yinf_U50_csv) < 0) __PYX_ERR(0, 1170, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1d, __pyx_kp_s_data_nakano_yinf_U50_csv) < 0) __PYX_ERR(0, 1169, __pyx_L1_error)
 
-    /* "nakanoplots.py":1171
+    /* "nakanoplots.py":1170
  *     csvname1c = "./data/nakano_yfin_U50.csv" #eta goes to 0.08
  *     csvname1d = "./data/nakano_yinf_U50.csv"
  *     csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region             # <<<<<<<<<<<<<<
  *     csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"
  *     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1e, __pyx_kp_s_data_nakano_yinf_U15_eta0_1_csv) < 0) __PYX_ERR(0, 1171, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1e, __pyx_kp_s_data_nakano_yinf_U15_eta0_1_csv) < 0) __PYX_ERR(0, 1170, __pyx_L1_error)
 
-    /* "nakanoplots.py":1172
+    /* "nakanoplots.py":1171
  *     csvname1d = "./data/nakano_yinf_U50.csv"
  *     csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
  *     csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"             # <<<<<<<<<<<<<<
  *     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"
  *     csvname3 = "./data/nakano_yfin_U40.csv"
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1f, __pyx_kp_s_data_nakano_yfin_U15_eta0_1_csv) < 0) __PYX_ERR(0, 1172, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname1f, __pyx_kp_s_data_nakano_yfin_U15_eta0_1_csv) < 0) __PYX_ERR(0, 1171, __pyx_L1_error)
 
-    /* "nakanoplots.py":1173
+    /* "nakanoplots.py":1172
  *     csvname1e = "./data/nakano_yinf_U15_eta0-1.csv" #eta goes to 0.1 ish, zoom in on weak-binding region
  *     csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"
  *     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"             # <<<<<<<<<<<<<<
  *     csvname3 = "./data/nakano_yfin_U40.csv"
  *     csvname3b = "./data/nakano_yinf_U40.csv"
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname2, __pyx_kp_s_data_nakano_yinf_logU_v2_avar_c) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname2, __pyx_kp_s_data_nakano_yinf_logU_v2_avar_c) < 0) __PYX_ERR(0, 1172, __pyx_L1_error)
 
-    /* "nakanoplots.py":1174
+    /* "nakanoplots.py":1173
  *     csvname1f = "./data/nakano_yfin_U15_eta0-1.csv"
  *     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"
  *     csvname3 = "./data/nakano_yfin_U40.csv"             # <<<<<<<<<<<<<<
  *     csvname3b = "./data/nakano_yinf_U40.csv"
  *     csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3, __pyx_kp_s_data_nakano_yfin_U40_csv) < 0) __PYX_ERR(0, 1174, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3, __pyx_kp_s_data_nakano_yfin_U40_csv) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
 
-    /* "nakanoplots.py":1175
+    /* "nakanoplots.py":1174
  *     csvname2 = "./data/nakano_yinf_logU_v2_avar.csv"
  *     csvname3 = "./data/nakano_yfin_U40.csv"
  *     csvname3b = "./data/nakano_yinf_U40.csv"             # <<<<<<<<<<<<<<
  *     csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
  *     csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3b, __pyx_kp_s_data_nakano_yinf_U40_csv) < 0) __PYX_ERR(0, 1175, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3b, __pyx_kp_s_data_nakano_yinf_U40_csv) < 0) __PYX_ERR(0, 1174, __pyx_L1_error)
 
-    /* "nakanoplots.py":1176
+    /* "nakanoplots.py":1175
  *     csvname3 = "./data/nakano_yfin_U40.csv"
  *     csvname3b = "./data/nakano_yinf_U40.csv"
  *     csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only             # <<<<<<<<<<<<<<
  *     csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
  *     csvname4 = './data/devreese1.csv' #strong coupling soln only
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3c, __pyx_kp_s_data_nakano_yfin_U20_str_csv) < 0) __PYX_ERR(0, 1176, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3c, __pyx_kp_s_data_nakano_yfin_U20_str_csv) < 0) __PYX_ERR(0, 1175, __pyx_L1_error)
 
-    /* "nakanoplots.py":1177
+    /* "nakanoplots.py":1176
  *     csvname3b = "./data/nakano_yinf_U40.csv"
  *     csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
  *     csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only             # <<<<<<<<<<<<<<
  *     csvname4 = './data/devreese1.csv' #strong coupling soln only
  *     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3d, __pyx_kp_s_data_nakano_yfin_U40_wk_csv) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname3d, __pyx_kp_s_data_nakano_yfin_U40_wk_csv) < 0) __PYX_ERR(0, 1176, __pyx_L1_error)
 
-    /* "nakanoplots.py":1178
+    /* "nakanoplots.py":1177
  *     csvname3c = './data/nakano_yfin_U20_str.csv' #strong coupling soln only
  *     csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
  *     csvname4 = './data/devreese1.csv' #strong coupling soln only             # <<<<<<<<<<<<<<
  *     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
  *     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname4, __pyx_kp_s_data_devreese1_csv) < 0) __PYX_ERR(0, 1178, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname4, __pyx_kp_s_data_devreese1_csv) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
 
-    /* "nakanoplots.py":1179
+    /* "nakanoplots.py":1178
  *     csvname3d = './data/nakano_yfin_U40_wk.csv' #strong coupling soln only
  *     csvname4 = './data/devreese1.csv' #strong coupling soln only
  *     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found             # <<<<<<<<<<<<<<
  *     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
- *     csvname_su_fin = './data/nak_smallU_yfin.csv'
+ *     csvname_su_fin = './data/nak_smallU_yfin_s10.csv'
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_mat, __pyx_kp_s_data_nak_mats_csv) < 0) __PYX_ERR(0, 1179, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_mat, __pyx_kp_s_data_nak_mats_csv) < 0) __PYX_ERR(0, 1178, __pyx_L1_error)
 
-    /* "nakanoplots.py":1180
+    /* "nakanoplots.py":1179
  *     csvname4 = './data/devreese1.csv' #strong coupling soln only
  *     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
  *     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found             # <<<<<<<<<<<<<<
- *     csvname_su_fin = './data/nak_smallU_yfin.csv'
- *     csvname_su_inf = './data/nak_smallU_yinf.csv'
+ *     csvname_su_fin = './data/nak_smallU_yfin_s10.csv'
+ *     csvname_su_inf = './data/nak_smallU_yinf_s10.csv'
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_mat_inf, __pyx_kp_s_data_nak_mats_inf_csv) < 0) __PYX_ERR(0, 1180, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_mat_inf, __pyx_kp_s_data_nak_mats_inf_csv) < 0) __PYX_ERR(0, 1179, __pyx_L1_error)
 
-    /* "nakanoplots.py":1181
+    /* "nakanoplots.py":1180
  *     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
  *     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
- *     csvname_su_fin = './data/nak_smallU_yfin.csv'             # <<<<<<<<<<<<<<
- *     csvname_su_inf = './data/nak_smallU_yinf.csv'
+ *     csvname_su_fin = './data/nak_smallU_yfin_s10.csv'             # <<<<<<<<<<<<<<
+ *     csvname_su_inf = './data/nak_smallU_yinf_s10.csv'
  * 
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_su_fin, __pyx_kp_s_data_nak_smallU_yfin_csv) < 0) __PYX_ERR(0, 1181, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_su_fin, __pyx_kp_s_data_nak_smallU_yfin_s10_csv) < 0) __PYX_ERR(0, 1180, __pyx_L1_error)
 
-    /* "nakanoplots.py":1182
+    /* "nakanoplots.py":1181
  *     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
- *     csvname_su_fin = './data/nak_smallU_yfin.csv'
- *     csvname_su_inf = './data/nak_smallU_yinf.csv'             # <<<<<<<<<<<<<<
+ *     csvname_su_fin = './data/nak_smallU_yfin_s10.csv'
+ *     csvname_su_inf = './data/nak_smallU_yinf_s10.csv'             # <<<<<<<<<<<<<<
  * 
  *     #FFT(a=0.1,y=0,s=1,opt='nak',ext='.eps')
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_su_inf, __pyx_kp_s_data_nak_smallU_yinf_csv) < 0) __PYX_ERR(0, 1182, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_csvname_su_inf, __pyx_kp_s_data_nak_smallU_yinf_s10_csv) < 0) __PYX_ERR(0, 1181, __pyx_L1_error)
 
-    /* "nakanoplots.py":1192
+    /* "nakanoplots.py":1187
+ *     #DensityPlot3D()
  * 
- *     #PlotBindingE([csvname_su_fin,csvname_su_inf])
- *     GenE_vs_a()             # <<<<<<<<<<<<<<
- *     #Plot_E_vs_a("./data/testnak.csv",xvar='y',logplot=1)
- *     #name = E_asig(0.009200924,0,1000,fixed='a')
+ *     PoolParty(csvname_su_inf)             # <<<<<<<<<<<<<<
+ *     #PlotE(csvname3, fit=False, opt='', multiplot=True)
+ * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_GenE_vs_a); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1192, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1192, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_PoolParty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1187, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_csvname_su_inf); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1187, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1187, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "nakanoplots.py":1165
+    /* "nakanoplots.py":1206
+ *     #GenE_vs_eta_y_fixedU(False)
+ *     #PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=3, fit=True)
+ *     PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0.05], logplot=3, fit=True)             # <<<<<<<<<<<<<<
+ *     #PlotAtFixedVal([csvname3, csvname3b], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=0)
+ * 
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_PlotAtFixedVal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_csvname_su_fin); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_csvname_su_inf); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyList_SET_ITEM(__pyx_t_5, 1, __pyx_t_3);
+    __pyx_t_7 = 0;
+    __pyx_t_3 = 0;
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __pyx_t_5 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_INCREF(__pyx_n_s_U);
+    __Pyx_GIVEREF(__pyx_n_s_U);
+    PyList_SET_ITEM(__pyx_t_7, 0, __pyx_n_s_U);
+    __Pyx_INCREF(__pyx_n_s_dE);
+    __Pyx_GIVEREF(__pyx_n_s_dE);
+    PyList_SET_ITEM(__pyx_t_7, 1, __pyx_n_s_dE);
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_colnames, __pyx_t_7) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_fixedqty, __pyx_n_s_eta) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_INCREF(__pyx_float_0_05);
+    __Pyx_GIVEREF(__pyx_float_0_05);
+    PyList_SET_ITEM(__pyx_t_7, 0, __pyx_float_0_05);
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_fixedvals, __pyx_t_7) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_logplot, __pyx_int_3) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_fit, Py_True) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+    /* "nakanoplots.py":1164
  * ###############################################################################################################################
  * 
  * if __name__ == '__main__':             # <<<<<<<<<<<<<<
@@ -38819,10 +38844,10 @@ if (!__Pyx_RefNanny) {
  * import numpy as np
  * from matplotlib.ticker import MaxNLocator, LogLocator
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_7) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /*--- Wrapped vars code ---*/
 

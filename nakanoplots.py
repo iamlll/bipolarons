@@ -386,7 +386,7 @@ def Plot_E_vs_a(csvname, xvar = 'a',plotcoulomb=False,logplot=0):
         Us = df[df['alpha'] == alpha]['U'].values
         if xvar == 'y':
             ax.plot(ys,Es,label='$\\alpha=$' + str(alpha))
-            ax2.plot(ys,ayes, label='$\\alpha=$' + str(alpha))
+            ax2.plot(ys,sigs, label='$\\alpha=$' + str(alpha))
             ax.set_xlabel("$y$")
             ax2.set_xlabel("$y$")
             ax2.set_ylabel("$a$")
@@ -426,14 +426,14 @@ def Plot_E_vs_a(csvname, xvar = 'a',plotcoulomb=False,logplot=0):
 
 def GenE_vs_a():
     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
-    ns=[0.]
+    ns=[0.05]
     Us = [0.01] #corresponds to alpha = 1,5,8,10
     #Us = [20.]
     ayes = np.geomspace(1E-5,1,100)
     #ayes = np.linspace(0.2,0.4,20)
     #ys = np.linspace(1E-3,5,80)
     ss = np.linspace(-5,5,30)
-    ys = np.geomspace(0.05,5,50)
+    ys = np.geomspace(0.05,50,80)
     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
     z_c = 10.
     a_c = 0.6
@@ -683,7 +683,7 @@ def plotContour(filename, colnames,xlims=(), ylims=(), zlims=(),save=False, zero
         plt.savefig(ps.SavePath(filename,suffix))
     plt.show()
 
-def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, logplot=0, fit=False):
+def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, realval = False,logplot=0, fit=False):
     '''
     input:
         filenames: length 1 or 2 array
@@ -702,8 +702,14 @@ def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, logplot=0, fit=Fals
             val, fixed_x, Efins = ps.FindArrs(df, [a,'E'], fixedqty, val)
             df2 = pd.read_csv(filenames[1])
             _, _, Einfs = ps.FindArrs(df2, [a,'E'], fixedqty, val)
-            ylist = [-(Efin-Einf)/np.abs(Einf) for Efin, Einf in zip(Efins, Einfs)][0] #plot negative binding energy
-            b = '-dE'
+            if realval == False: 
+                ylist = [(Efin-Einf)/np.abs(Einf) for Efin, Einf in zip(Efins, Einfs)][0] #plot binding energy in relative units (of 2*polaron energy)
+            else:
+                ylist = [(Efin-Einf) for Efin, Einf in zip(Efins, Einfs)][0] #plot binding energy in abs units (hw)
+            if logplot == 3:
+                b = '-dE'
+                ylist = -ylist
+	    
         else:
             val, fixed_x, fixed_ys = ps.FindArrs(df, colnames, fixedqty, val)
             ylist = fixed_ys[0]
@@ -742,7 +748,7 @@ def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, logplot=0, fit=Fals
         ax.set_xlabel('$\log' + a + '$')
         ax.legend()
     else:
-        ax.plot(fixed_x, ylist,'.',label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
+        ax.plot(fixed_x, ylist,label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
         if logplot == 1:
             ax.semilogx()
         elif logplot == 2:
@@ -900,9 +906,9 @@ def PoolParty(csvname):
     #Us = np.geomspace(1E-3,15,50)
 
     #For E vs alpha plots
-    ns = [0.]
-    Us = np.linspace(1E-3,40,80)
-    #Us = np.geomspace(1E-10,1,100) #study small U behavior
+    ns = [0.,0.05]
+    #Us = np.linspace(1E-3,40,80)
+    Us = np.geomspace(1E-10,1,100) #study small U behavior
 
     #Phase diagram capturing edge of horn
     #ns=np.linspace(0,0.08,60)
@@ -930,11 +936,11 @@ def PoolParty(csvname):
         job_args = [(n,u,z_c,a_c,y) for n,u in product(ns,Us)] #for phase diagram
         #job_args = [(n,u,z_c,a_c,y) for n,u in zip(ns,Us)] #for materials ONLY
 
-        #results = pool.map(nag.min_E_avar_inf, job_args)
+        #results = pool.map(nag.min_E_avar_inf, job_args) #gives same answer as just fixing a at a=0 or a=1
         results = pool.map(nag.min_E_inf, job_args)
 
         #bipolaron run for finite y
-        #results = pool.map(nag.min_E_bip_ln2, job_args)
+        #results = pool.map(nag.min_E_bip_ln2, job_args) #bipolaron min energy
         #results = pool.map(nag.min_E_bip_strong, job_args) #strong coupling result
         #results = pool.map(nag.min_E_bip_weak, job_args) #strong coupling result
         #results = pool.map(nag.min_E_bip_asfix, job_args) #weak coupling result
@@ -1177,18 +1183,18 @@ if __name__ == '__main__':
     csvname4 = './data/devreese1.csv' #strong coupling soln only
     csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
-    csvname_su_fin = './data/nak_smallU_yfin.csv'
-    csvname_su_inf = './data/nak_smallU_yinf.csv'
+    csvname_su_fin = './data/nak_smallU_yfin_s10.csv'
+    csvname_su_inf = './data/nak_smallU_yinf_s10.csv'
 
     #FFT(a=0.1,y=0,s=1,opt='nak',ext='.eps')
     #f_r_special()
     #DensityPlot3D()
 
-    #PoolParty(csvname3b)
+    #PoolParty(csvname_su_inf)
     #PlotE(csvname3, fit=False, opt='', multiplot=True)
 
     #PlotBindingE([csvname_su_fin,csvname_su_inf])
-    GenE_vs_a()
+    #GenE_vs_a()
     #Plot_E_vs_a("./data/testnak.csv",xvar='y',logplot=1)
     #name = E_asig(0.009200924,0,1000,fixed='a')
     #name = "./data/nak_E(a,s)_n_0_U_1000_y_0.375206972.csv"
@@ -1202,6 +1208,8 @@ if __name__ == '__main__':
     #E_binding(csvname1f, csvname1e, colnames=['eta','U','E'], point = True, logplot='y', xlims=(0,0.003),ylims=(1,), realval = True)
     #FormatPhaseDia()
     #GenE_vs_eta_y_fixedU(False)
+    PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=1,realval=True)
+    PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0.05], logplot=1,realval=True)
     #PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=3, fit=True)
     #PlotAtFixedVal([csvname_su_fin, csvname_su_inf], colnames=['U','dE'], fixedqty='eta', fixedvals=[0.05], logplot=3, fit=True)
     #PlotAtFixedVal([csvname3, csvname3b], colnames=['U','dE'], fixedqty='eta', fixedvals=[0], logplot=0)

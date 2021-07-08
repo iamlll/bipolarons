@@ -1,0 +1,3 @@
+LIBRARY indep_params-cpython-38.dll
+EXPORTS
+PyInit_indep_params

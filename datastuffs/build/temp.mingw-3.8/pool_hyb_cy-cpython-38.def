@@ -1,0 +1,3 @@
+LIBRARY pool_hyb_cy-cpython-38.dll
+EXPORTS
+PyInit_pool_hyb_cy

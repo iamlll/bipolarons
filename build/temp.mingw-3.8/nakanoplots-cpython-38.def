@@ -1,0 +1,3 @@
+LIBRARY nakanoplots-cpython-38.dll
+EXPORTS
+PyInit_nakanoplots

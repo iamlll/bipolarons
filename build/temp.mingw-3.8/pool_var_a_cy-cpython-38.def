@@ -1,0 +1,3 @@
+LIBRARY pool_var_a_cy-cpython-38.dll
+EXPORTS
+PyInit_pool_var_a_cy

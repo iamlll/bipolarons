@@ -32,7 +32,7 @@ def Integral_ln_inf(double y, double s, double a, double z_c, int option):
     elif option == 2: #For a_c <= a < 1
         return integrate.quad(Integrand2, z_c, np.inf, args=(y,s,a))[0] 
     elif option == 3: #For a=1
-        return 2*mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[0,1])
+        return 2*mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[0,1],error=False)
         #return mpm.quad(lambda z,u: Integrand3(u,z,y,s),[0,z_c],[-1,1])
     else: return 0.
     
@@ -103,12 +103,12 @@ Energy and minimization for y->inf using logarithmic variable s = log(sig).
 Since E_inf seems only to favor a=0 and a=1, just compare these two values to get the min energy at electron sep dist y->inf
 '''
 def E_afix_inf(np.ndarray[double, ndim=1] x, double a, double y, double n, double U, double z_c, double a_c):
-    '''Energy evaluated at y>>1 (fixed), normalized by KE = hw
+    '''Energy evaluated at y>>1 (fixed), normalized by KE = hw. Try to correct for finite-y & sigma effects by subtracting off the screened Coulomb term eta*U/(y*sigma) from the Coulomb interaction
         Inputs:
             x = [s] nondimensionalized elec size s = log(sig)
     '''
     cdef double KE = 3*exp(-2*x[0]) 
-    cdef double coul = U*exp(-x[0]) * 1./y
+    cdef double coul = U*exp(-x[0])/y
     cdef double e_ph = Eph_inf_ln(x[0],a, y, n, U, z_c,a_c)
     return KE + e_ph + coul
 
@@ -118,8 +118,9 @@ def min_E_afix_inf(tuple args):
     cdef double u = args[1]
     cdef double z_c = args[2]
     cdef double a_c = args[3]
-    cdef double a = args[4]
-    cdef double y = 500.
+    cdef double sig = args[4]
+    cdef double y = args[5]
+    cdef double a = args[6]
     cdef tuple bnds = ((-2.5,0),) #s
     cdef np.ndarray[double, ndim=1] guess = np.array([-1.])
     if (1-n)*u/2 > 9.5:
@@ -132,14 +133,14 @@ def min_E_afix_inf(tuple args):
         res = minimize(E_afix_inf,guess,args=(a,y,n,u, z_c, a_c),bounds=bnds)
         return n,u,a,exp(res.x[0]),y,E_afix_inf(res.x,a,y,n,u,z_c, a_c)
     elif (1-n)*u/2 < 7:
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((sig-1,sig),) #s
+        guess = np.array([sig])
         res = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c, a_c),bounds=bnds)
         return n,u,1.,exp(res.x[0]),y,E_afix_inf(res.x,1.,y,n,u,z_c, a_c)
     else: #near the 1st order transition from weak/strong coupling
         res = minimize(E_afix_inf,guess,args=(a,y,n,u, z_c, a_c),bounds=bnds)
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((sig-1,sig),) #s
+        guess = np.array([sig])
         res2 = minimize(E_afix_inf,guess,args=(1.,y,n,u, z_c,a_c),bounds=bnds)
         if E_afix_inf(res.x,a,y,n,u,z_c, a_c) > E_afix_inf(res2.x,1.,y,n,u,z_c, a_c): 
             return n,u,1.,exp(res2.x[0]),y,E_afix_inf(res2.x,1.,y,n,u,z_c, a_c)
@@ -238,14 +239,14 @@ def min_E_inf_sfix(tuple args):
     cdef tuple X1 = tuple([s,y,1.,n,u,z_c,a_c])
 
     if (1-n)*u/2 >= 10:
-        return n,u,0.,exp(s),y,E_bip_aysfix(X0)[-1]
+        return n,u,0.,exp(s),y,E_inf_aysfix(X0)[-1]
     elif (1-n)*u/2 < 7:
-        return n,u,1.,exp(s),y,E_bip_aysfix(X1)[-1]
+        return n,u,1.,exp(s),y,E_inf_aysfix(X1)[-1]
     else: #near the 1st order transition from weak/strong coupling
-        if E_bip_aysfix(X0)[-1] > E_bip_aysfix(X1)[-1]: 
-            return n,u,1.,exp(s),y,E_bip_aysfix(X1)[-1]
+        if E_bip_aysfix(X0)[-1] > E_inf_aysfix(X1)[-1]: 
+            return n,u,1.,exp(s),y,E_inf_aysfix(X1)[-1]
         else:
-            return n,u,0.,exp(s),y,E_bip_aysfix(X0)[-1]
+            return n,u,0.,exp(s),y,E_inf_aysfix(X0)[-1]
 
 def min_E_inf_weak(tuple args):
     '''Minimize energy in Nagano formulation - WEAK COUPLING LIMIT (i.e. a=1), fixed y-> infty'''
@@ -323,6 +324,23 @@ def Eph_ln(double s, double a, double y, double n, double U, double z_c, double 
     elif (a_c <= a and a < 1): return -(1-n)*U* exp(-s)/(pi* pow(1+ exp(-pow(y,2)/2),2))  * (Integral_ln(y,s, a, z_c,1) + Integral_ln(y, s,a,z_c,2))
     else: return - (1-n)*U * (1- 2*atan(z_c* exp(-s))/pi + exp(-s)/pi * Integral_ln(y,s, 1.,z_c,3)) 
 
+'''For weak coupling, should be able to fix sigma and y, and calculate the integrals just once. Then adjust prefactors to generate the phase diagram'''
+def Weak_Eph(double s, double y, double z_c):
+    return 1- 2*atan(z_c* exp(-s))/pi + exp(-s)/pi * Integral_ln(y,s, 1.,z_c,3) 
+def Weak_E(tuple args):
+    ''' args = [double n, double U, double s, double y, double integral_opt, double yinf, double integral_inf]'''
+    #a = 1 case ONLY, at fixed electron size sigma
+    #integral = result from Weak_Eph
+    cdef double KE = exp(-2*args[2]) * (3 - 0.5*args[3]**2 / (1 + exp(0.5*args[3]**2))) 
+    cdef double coul = args[1]* exp(-args[2]) * (1./args[3]* erf(args[3]/sqrt(2)) + sqrt(2/pi)*exp(-0.5*args[3]**2)) / (1 + exp(-0.5*args[3]**2))
+    cdef double Eph = -(1-args[0])*args[1]*args[4]
+    cdef double Eopt = KE + coul + Eph
+    cdef double KE_inf = 3*exp(-2*args[2]) 
+    cdef double coul_inf = args[1]* exp(-args[2])/args[3]
+    cdef double Eph_inf = -(1-args[0])*args[1]*args[6]
+    cdef double Einf = KE_inf + coul_inf + Eph_inf
+    return args[0],args[1],1,args[2],args[3], Eopt, args[5], Einf, (Eopt - Einf)/abs(Einf)
+     
 ##########################################################################################################################################################
 
 def E_bip_ln(np.ndarray[double, ndim=1] x, double n, double U, double z_c, double a_c):
@@ -546,6 +564,7 @@ def min_E_bip_ayfix(tuple args):
     cdef double a_c = args[3]
     cdef double a = args[4]
     cdef double y = args[5]
+    cdef double s = args[6]
 
     cdef tuple bnds = ((-2.5,0),) #s
     cdef np.ndarray[double, ndim=1] guess = np.array([-1.])
@@ -557,14 +576,14 @@ def min_E_bip_ayfix(tuple args):
         res = minimize(E_bip_ayfix,guess,args=(y,a,n,u, z_c, a_c),bounds=bnds)
         return n,u,a,exp(res.x[0]),y,E_bip_ayfix(res.x,y,a,n,u,z_c, a_c)
     elif (1-n)*u/2 < 7:
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((s-1,s),) #s
+        guess = np.array([s])
         res = minimize(E_bip_ayfix,guess,args=(y,1.,n,u, z_c, a_c),bounds=bnds)
         return n,u,1.,exp(res.x[0]),y,E_bip_ayfix(res.x,y,1.,n,u,z_c, a_c)
     else:
         res = minimize(E_bip_ayfix,guess,args=(y,a,n,u, z_c, a_c),bounds=bnds)
-        bnds = ((2,5),) #s
-        guess = np.array([5.])
+        bnds = ((s-1,s),) #s
+        guess = np.array([s])
         res2 = minimize(E_bip_ayfix,guess,args=(y,1.,n,u, z_c, a_c),bounds=bnds)
         if E_bip_ayfix(res.x,y,a,n,u,z_c, a_c) > E_bip_ayfix(res2.x,y,1.,n,u,z_c, a_c): 
             return n,u,1.,exp(res2.x[0]),y,E_bip_ayfix(res2.x,y,1.,n,u,z_c, a_c)
@@ -679,6 +698,35 @@ def E_bip_aysfix(tuple x):
     cdef double e_ph = Eph_ln(x[0],x[2], x[1], x[3], x[4], x[5],x[6])
     return x[3],x[4],x[2],exp(x[0]),x[1], KE + e_ph + coul
 
+def E_inf_aysfix(tuple x):
+    '''bipolaron energy normalized by KE = hw with fixed a; correct for finite y bias by subtracting off the screened Coulomb interaction eta*U/(sigma*y)
+        Inputs:
+            args = x = (s, y, a, n, U, z_c, a_c)
+    '''
+    cdef double KE = exp(-2*x[0]) * (3 - pow(x[1],2)/2* 1./ (1 + exp(pow(x[1],2)/2)) )
+    cdef double coul = x[4]*(1-x[3])* exp(-x[0])/x[1]
+    cdef double e_ph = Eph_ln(x[0],x[2], x[1], x[3], x[4], x[5],x[6])
+    return x[3],x[4],x[2],exp(x[0]),x[1], KE + e_ph + coul
+
+def FindNakConsts(tuple x):
+    '''bipolaron energy normalized by KE = hw with fixed a,y, and s=ln(sigma) values. Returns KE, electron-phonon, and Coulomb energy constants in the form
+    E_opt = C_1 -alpha*C_2 + U*C_3
+, along with total energy
+    Comparison with E_inf = -2*alpha for true independent polaron result
+
+    input: x = (double s, double y, double a, double n, double u, double z_c, double a_c)
+    '''
+    cdef double C_1 = exp(-2*x[0]) * (3 - pow(x[1],2)/2* 1./ (1 + exp(pow(x[1],2)/2)) )
+    cdef double C_2 = 1- 2*atan(x[5]* exp(-x[0]))/pi + exp(-x[0])/pi * Integral_ln(x[1],x[0], 1.,x[5],3) 
+    cdef double C_3 = exp(-x[0]) * (erf(x[1]/sqrt(2)) *1./x[1] + sqrt(2/pi)*exp(-pow(x[1],2)/2)) / (1 + exp(-pow(x[1],2)/2))
+    cdef double E_opt = C_1 - (1-x[3])*x[4]*C_2 + x[4]*C_3
+    cdef double E_inf = -(1-x[3])*x[4]
+    
+    #cdef tuple resinf = min_E_inf(tuple(x[3],x[4],x[5],x[6],x[1],x[0],))
+    cdef double dE = (E_opt - E_inf)/abs(E_inf)
+    #return resfin + resinf[2:] + (Ebind,)
+    return x[3],x[4],x[2],x[0],x[1],C_1, C_2, C_3, E_opt, E_inf, dE 
+
 #################################################################################################################################
 cdef extern from "complex.h":
     double complex cexp(double complex)
@@ -748,20 +796,20 @@ def min_E_dev(tuple args):
 
 '''Spherically symmetric soln, to compare to finite-y soln for Nakano, above'''
 #minimizing wrt sigma/l = s, y = d/sigma
-def sym_Ir(double k,double y):
-    def Integrand(double r, double k, double y):
+def sym_Ir(double k,double y, double const, int opt):
+    def Integrand(double r, double k, double y): #for finite y
         return r*exp(-pow(r-y,2)) * sin(k*r/2)
-    return integrate.quad(Integrand, 0, np.inf, args=(k,y))[0] 
+    def Integrand_inf(double r, double k, double y, double const): #for y->inf
+        return r*exp(-pow(r-y,2)) * sin(k*r/2) / const
+    if opt == 0:
+        return integrate.quad(Integrand, 0, np.inf, args=(k,y))[0] 
+    else:
+        return integrate.quad(Integrand_inf, 0, np.inf, args=(k,y,const,))[0] 
 
 def sym_Ik(double y, double const, int opt):
-    def Integrand(double k, double y):
-        return pow(sym_Ir(k,y)/k,2)
-    def Integrand_inf(double k, double y, double const):
-        return pow(sym_Ir(k,y)/(k*const),2)
-    if opt == 0:
-        return integrate.quad(Integrand, 0, np.inf, args=(y,))[0] 
-    else:
-        return integrate.quad(Integrand_inf, 0, np.inf, args=(y,const,))[0] 
+    def Integrand(double k, double y, double const, int opt):
+        return exp(-pow(k,2)/4) * pow(sym_Ir(k,y, const, opt)/k,2)
+    return integrate.quad(Integrand, 0, np.inf, args=(y, const, opt))[0] 
   
 def sym_E(np.ndarray[double, ndim=1] x, double n, double U):
     '''bipolaron energy normalized by KE = hw; written in terms of s = ln (sig) (base e)
@@ -779,27 +827,36 @@ def sym_E_inf(np.ndarray[double, ndim=1] x, double y, double n, double U):
         Inputs:
             x = [s] nondimensionalized elec sep dist, size
     '''
-    cdef double const = sqrt(2/pi)*y * exp(-pow(y,2)) + (1+pow(y,2))*(1 + erf( y/sqrt(2)))
+    cdef double const = (1+pow(y,2))*2
     cdef double KE = exp(-2*x[0])/2 * ((3+5*pow(y,2) + sqrt(2/pi)*y * exp(-pow(y,2)) + (y-1)*(y-3)* erf(y/sqrt(2)) ) /const + 3) 
     cdef double coul = U*exp(-x[0]) * (exp(-pow(y,2)) + (1+y)*erf(y/sqrt(2)))/const
     cdef double Eph = -32*(1-n)*U/pow(pi,2) * exp(-x[0]) * sym_Ik(y, const, 1)
     return KE + coul + Eph
 
-def min_sym_E(tuple args):
+def min_sym_E_bip(tuple args):
     '''Minimize energy in Nakano formulation allowing Y = ln(y), s = ln(sig) to vary in the strong-coupling limit (a=0). Using a symmetric wfn'''
     cdef double n = args[0]
     cdef double u = args[1]
     cdef tuple bnds = ((-2,2),(-2.5,1),) #y, s 
     cdef np.ndarray[double, ndim=1] guess = np.array([0.,-1])
     res = minimize(sym_E,guess,args=(n,u),bounds=bnds)
-    return n,u,0,exp(res.x[1]),exp(res.x[0]),sym_E(res.x,n,u), 0,0,0,-(1-n)*u, (sym_E(res.x,n,u) + 2*(1-n)*u/2)/ abs((1-n)*u)
+    return n,u,0,exp(res.x[1]),exp(res.x[0]),sym_E(res.x,n,u)
 
 def min_sym_E_inf(tuple args):
     '''Minimize energy in Nagano formulation while fixing a to be either 0 or 1 (this is what various E(a) plots seem to indicate), fixed y-> infty'''
     cdef double n = args[0]
     cdef double u = args[1]
     cdef double y = args[4]
-    cdef tuple bnds = ((-2.5,0),) #s
+    cdef tuple bnds = ((-2.5,2),) #s
     cdef np.ndarray[double, ndim=1] guess = np.array([-1.])
     res = minimize(sym_E_inf,guess,args=(y,n,u),bounds=bnds)
     return n,u,0,exp(res.x[0]),y,sym_E_inf(res.x,y,n,u)
+
+def min_sym_E(tuple args):
+    '''Wrapper function for energy minimization using symmetric wfn (strong coupling limit)'''
+
+    cdef tuple resfin = min_sym_E_bip(args)
+    cdef tuple resinf = min_sym_E_inf(args)
+    #return n, U, all finite optimization quantities, all y->inf optimization quantities, and the relative binding energy (E_opt - E_inf)/|E_inf|
+    cdef double Ebind = (resfin[-1] - resinf[-1])/abs(resinf[-1])
+    return resfin + resinf[2:] + (Ebind,)

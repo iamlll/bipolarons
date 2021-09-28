@@ -329,27 +329,85 @@ def FormatPhaseDia(csvname2, csvname2b):
     ax2.set_ylabel(b)
     plt.show()
 
-def FormatWeakPD(generate=True, point=True):
-    ss = [1,5,10,20]
-    csvnames = [""]*len(ss)
-    colors = ['red','green','blue','purple']
-    styles = ['solid','dotted','dashed','dashdot']
+def FormatWeakPD(generate=True, point=True, loglog=False, findconst=False, alt=False):
+    '''
+        alt: alternative method for generating phase diagrams, just by calculating the integral (depends on y, sigma) once for the el-ph contribution and then multiplying by different coefficients
+        point: whether or not to label material points on weak coupling PD
+        generate: generate data files for different values of sigma
+        loglog: log-log plotting option (with fit)
+        findconst: find individual contributions from KE, coul, eph terms in energy, compare to 2 infinitely separated electrons' energy (2E_pol = -2alpha)
+    '''
 
-    for i,sval in enumerate(ss):
-        csvnames[i] = "./data/nakano_wkPD_s" + str(sval) + ".csv"
-    print(csvnames)
-    
-    if generate == True:
-        '''run multiprocessing to generate energy CSV for range of alpha vals'''
-        #zoom in on weak-coupling regime
+    def fitweak(x,A,B):
+        f = A + B*x
+        return f
+    #ss = [1,5,10,20]
+    #ss = [2,5,8,10,12] #for _sub_ext
+    ss = [10]#5, 8, 12 for y=1000 
+    csvnames = [""]*len(ss)
+    csvnames_alt = [""]*len(ss)
+    colors = ['red','green','blue','purple', 'orange','black','magenta']
+    styles = ['solid','dotted','dashed','dashdot','solid','dotted','dashed']
+
+    if loglog == True:
+        #ext = '_loglog.csv'
+        #ext = '_loglog_y1000.csv'
+        #ext = '_loglog_sub_ext.csv' #subtraction of screened from bare Coulomb
+        ext = '_loglog_alt.csv' #constraining y ~ sigma
+        ns=np.geomspace(2E-4,1,50)
+    else:
+        ext = '.csv'
         ns=np.linspace(0,0.095,50)
+    
+    for i,sval in enumerate(ss):
+        csvnames[i] = "./data/nakano_wkPD_s" + str(sval) + ext
+        csvnames_alt[i] = "./data/nakano_wkPD_energy_consts_sval_" + str(sval) + ext
+
+    print(csvnames)
+    #PlotAtFixedVal(csvnames, colnames=['eta','dE'], fixedqty='U', fixedvals=[1.])
+    if (findconst == True) & (generate == True):
+        '''alternative method to run multiprocessing to generate energy CSV for range of alpha vals, by finding KE, Coulomb, eph prefactors and comparing with E_infty = -2*alpha'''
+        #zoom in on weak-coupling regime; doesn't make sense for strong coupling which optimizes to its own sigma ~ 1
+        Us = np.geomspace(1E-5,15,70)
+    
+        a=1.
+        y = 1. #algorithm insufficiently powerful to optimize for exact finite y to minimize energy
+        z_c = 10.
+
+        dfs = [{}]*len(ss)
+        quantities = ['eta','U','a','s','y','ke','eph','coul','E','Einf', 'dE'] #constants in format E= C1 -alpha*C2 + U*C3
+
+        for num, sval in enumerate(ss):
+            print(sval)
+            for i in quantities: 
+                dfs[num][i]=[]
+            tic = time.perf_counter()
+            with multiprocessing.Pool(processes=4) as pool:
+                job_args = [(sval, a, y, n, u, z_c) for n,u in product(ns,Us)]
+                results = pool.map(nag.FindNakConsts, job_args)
+
+                for res in results:
+                    for name, val in zip(quantities, res):
+                        dfs[num][name].append(val)
+
+            toc = time.perf_counter()
+            print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
+            data = pd.DataFrame(dfs[num])
+            pd.set_option("display.max.columns",None)
+            print(data)
+             
+            data.to_csv(csvnames_alt[num],sep=',',index=False)
+       
+    elif generate == True:
+        '''run multiprocessing to generate energy CSV for range of alpha vals'''
+        #zoom in on weak-coupling regime; doesn't make sense for strong coupling which optimizes to its own sigma ~ 1
         Us = np.geomspace(1E-5,15,70)
     
         a=1.
         z_c = 10.
-        y = 500.
+        y = 500. #default: 500
         a_c = 0.6 #dividing a value
-
+        
         dfs = [{}]*len(ss)
         quantities = ['eta','U','a','s','y','E', 'ainf', 'sinf', 'yinf', 'Einf', 'dE']
 
@@ -357,7 +415,6 @@ def FormatWeakPD(generate=True, point=True):
             print(sval)
             for i in quantities: 
                 dfs[n][i]=[]
-
             tic = time.perf_counter()
             with multiprocessing.Pool(processes=4) as pool:
                 job_args = [(n,u,z_c,a_c,y,sval) for n,u in product(ns,Us)]
@@ -374,47 +431,183 @@ def FormatWeakPD(generate=True, point=True):
             print(data)
             
             data.to_csv(csvnames[n],sep=',',index=False)
+
+    elif alt == True:
+        Us = np.geomspace(1E-5,15,70)
+        z_c = 10.
+        yopt = 1.
+        yinf = 1000.
+        dfs = [{}]*len(ss)
+        quantities = ['eta','U','a','s','y','E', 'yinf', 'Einf', 'dE']
+        for n,sval in enumerate(ss): 
+            print(sval)
+            for i in quantities: 
+                dfs[n][i]=[]
+
+            integral = nag.Weak_Eph(sval, yopt, z_c) 
+            integral_inf = nag.Weak_Eph(sval, yinf, z_c) 
+
+            tic = time.perf_counter()
+            with multiprocessing.Pool(processes=4) as pool:
+                job_args = [(nval,u,sval, yopt, integral, yinf, integral_inf) for nval,u in product(ns,Us)]
+                results = pool.map(nag.Weak_E, job_args)
+
+                for res in results:
+                    for name, val in zip(quantities, res):
+                        dfs[n][name].append(val)
+            #now fill out 2nd data frame
+            toc = time.perf_counter()
+            print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
+            data = pd.DataFrame(dfs[n])
+            data.to_csv(csvnames[n],sep=',',index=False)
         
     #Now plot dE = 0 curves on phase diagram
     fig = plt.figure(figsize=(6,4.5))
     ax = fig.add_subplot(111)
+    fig2 = plt.figure(figsize=(10,4.5))
+    ax2 = fig2.add_subplot(121)
+    ax2.set_xlabel('$\log \eta$')
+    ax2.set_ylabel('$\log U$')
+    ax3 = fig2.add_subplot(122)
+    ax3.set_ylabel('Fit const $A$')
+    ax3.set_xlabel('$\log \\tilde \sigma$')
     zeroconts = {}
-    labelpos = [[(0.06,3.18)],[(0.045,0.04)],[(0.04,3E-4)],[(0.00158,0.0002)]]
-    for n,sval in enumerate(ss):
-        df = pd.read_csv(csvnames[n])
-        ns, Us, Zbind = ps.parse_CSV(df,['eta','U','dE'])
-        print(Zbind.min())
-        ax.semilogy()
+    labelpos = [[(0.00158,0.0002)],[(0.005,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)]]
+    #labelpos = [[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)],[(0.00158,0.0002)]]
+    As = np.zeros(len(ss))
     
+    for n,sval in enumerate(ss):
+        print(sval)
+        '''
+        if findconst == True:
+            df = pd.read_csv(csvnames_alt[n])
+        else:
+            df = pd.read_csv(csvnames[n])
+        '''
+        df = pd.read_csv(csvnames[n])
+
+        #testing weak-coupling energies E_opt against -2alpha to check "tree trunk" binding region. Spoiler alert: there's no binding anywhere
+        #alt_Einf = np.array([-(1-n)*u for n,u in zip(df['eta'].values,df['U'].values)]) #Einf = -2alpha
+        #alt_dE = (df['E'].values-alt_Einf)/np.abs(alt_Einf)
+        #df['dE'] = alt_dE
+        #wkidx = np.where(alt_dE <= 0)[0]
+        #print([(n,u,E) for n,u,E in zip(df['eta'].values[wkidx],df['U'].values[wkidx],alt_dE[wkidx])])
+
+        #manually pick out values of dE which are < 0, then check in up/down, left/right directions to determine if there's a 0 crossing there
+
+        ns, Us, Zbind = ps.parse_CSV(df,['eta','U','dE'])
+        ax.semilogy()
         #plot binding energy = 0 contour
+        cp = ax.contourf(ns, Us, Zbind, levels = MaxNLocator(nbins=20).tick_values(Zbind.min(),0))
+        cbar=fig.colorbar(cp) # Add a colorbar to a plot
+        cbar.ax.set_ylabel('$\Delta E$')
         zerocont = ax.contour(ns, Us, Zbind, [0.], colors=(colors[n],), linewidths=(1,), linestyles=(styles[n],), origin='lower') #plot dE = 0 curve
-        #e0,u0 = ps.FindCoords(zerocont)
-        #if sval == 20:
-        #    print(list(zip(e0[0],u0[0])))
+        e0,u0 = ps.FindCoords(zerocont)
+        if len(e0) > 1:
+            e0 = np.concatenate(e0,axis=None)
+            u0 = np.concatenate(u0,axis=None)
+        else:    
+            e0 = e0[0]
+            u0 = u0[0]
+        #if sval == 4:
+        #    print(list(zip(e0,u0)))
         label = '$\log \\tilde \sigma = $' + str(ss[n])
-        ax.clabel(zerocont, zerocont.levels, inline=True, manual=labelpos[n], fmt=label, fontsize=10)
+        #ax.clabel(zerocont, zerocont.levels, inline=True, manual=labelpos[n], fmt=label, fontsize=10)
+
+        if loglog == True:
+            ax.semilogx()
+            #ax.set_xlim(left=1E-4)
+            logx = np.log10(e0)
+            logy = np.log10(u0)
+            
+            ax2.plot(logx, logy, label= '$\log \\tilde \sigma = $' + str(ss[n]))
+
+            bnds_w = ([-50,-5],[10,5]) # bounds for weak coupling fit
+            guess_w =[0,0]
+            if ss[n] < 15:
+                idx = np.where(logx >= -1.7)[0]
+            else: idx = np.where(logx >= -2)[0]
+            #print(idx)
+            if len(idx) == 0: continue
+
+            coeffs, p_cov_w = curve_fit(fitweak,logx[idx], logy[idx], p0=guess_w,bounds=bnds_w)
+            As[n] = coeffs[0] #collect constant exponent of loglog fit
+            print(coeffs)
+            print(np.sqrt(np.diag(p_cov_w))) #standard deviation of the parameters in the fit
+            ans_w = fitweak(logx[idx],coeffs[0],coeffs[1])
+            ax2.plot(logx[idx],ans_w,color='red',label='fit')
+
+            textstr = r'$\log (U_{%d}) = %.2f + %.2f \log (\eta)$' %(sval,coeffs[0], coeffs[1],)
+            ax2.text(0.02, 0.35-n*0.05, textstr, transform=ax2.transAxes, fontsize=10, verticalalignment='top')
+
+    #scaling for sigma plots
+    if loglog == True:
+        textstr = r'$\log (U_{\log \tilde \sigma}) = A + B \log (\eta)$'
+        ax2.text(0.02, 0.4, textstr, transform=ax2.transAxes, fontsize=10, verticalalignment='top')
+        ax3.plot(ss,As,'.')
+        bnds = ([-50,-5],[10,5]) # bounds for weak coupling fit
+        guess =[0,0]
+        coeffs, p_cov = curve_fit(fitweak,ss, As, p0=guess,bounds=bnds)
+        print(coeffs)
+        print(np.sqrt(np.diag(p_cov))) #standard deviation of the parameters in the fit
+        sfloat = np.array([float(sval) for sval in ss])
+        ans = fitweak(sfloat,coeffs[0],coeffs[1])
+        ax3.plot(ss,ans,color='red',label='fit')
+
+        textstr = r'$A  = %.2f + %.2f \log (\tilde \sigma)$' %(coeffs[0], coeffs[1],)
+        ax3.text(0.02, 0.15, textstr, transform=ax3.transAxes, fontsize=12, verticalalignment='top')
 
     #Plot various material param values
     if point == True: 
         ax.plot(eta_STO,U_STO,color='black',marker='.') #STO, strontium titanate
-        ax.annotate('STO', (eta_STO, U_STO), xytext=(8, -17), textcoords='offset pixels')
         ax.plot(etaKTO,UKTO,color='black',marker='.') #KTO, potassium tantalate
-        ax.annotate('KTO', (etaKTO, UKTO), xytext=(8, -17), textcoords='offset pixels')
         ax.plot(9.05E-2, 2.6 ,color='black',marker='.') #PbS Lead sulfide, alloy
-        ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-25, 15), textcoords='offset pixels')
         ax.plot(8.18E-2, 2.58,color='black',marker='.') #PbSe Lead selenide
-        ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-40, 10), textcoords='offset pixels')
         ax.plot(8.26E-2, 1.87,color='black',marker='.') #PbTe Lead telluride
-        ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(6, -25), textcoords='offset pixels')
         ax.plot(3.75E-2, 3.12,color='black',marker='.') #SnTe Tin telluride
-        ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(8, -18), textcoords='offset pixels')
         ax.plot(8E-2, 0.47,color='black',marker='.') #GeTe Germanium telluride
-        ax.annotate('GeTe', (8E-2, 0.47), xytext=(-70,-20), textcoords='offset pixels')
+        if loglog == False:
+            ax.annotate('STO', (eta_STO, U_STO), xytext=(8, -17), textcoords='offset pixels')
+            ax.annotate('KTO', (etaKTO, UKTO), xytext=(8, -17), textcoords='offset pixels')
+            ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-25, 15), textcoords='offset pixels')
+            ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-40, 10), textcoords='offset pixels')
+            ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(6, -25), textcoords='offset pixels')
+            ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(-18, -18), textcoords='offset pixels')
+            ax.annotate('GeTe', (8E-2, 0.47), xytext=(-70,-20), textcoords='offset pixels')
+        else:
+            ax.annotate('STO', (eta_STO, U_STO), xytext=(8, -17), textcoords='offset pixels')
+            ax.annotate('KTO', (etaKTO, UKTO), xytext=(-60, -17), textcoords='offset pixels')
+            ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-40, 10), textcoords='offset pixels')
+            ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-80, -10), textcoords='offset pixels')
+            ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(-40, -30), textcoords='offset pixels')
+            ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(-70, -18), textcoords='offset pixels')
+            ax.annotate('GeTe', (8E-2, 0.47), xytext=(-70,-20), textcoords='offset pixels')
+            ax.set_xlim(left=2E-4)
     ax.set_xlabel('$\eta$')
     ax.set_ylabel('$U$')
 
     plt.tight_layout()
     plt.show()
+
+#generate table of El-ph integral values for y = y_opt, y_inf over a large range of sigma to hopefully find out something about its functional form, contributions to dE, etc.
+def FindIntegral():
+    ss = np.linspace(1,20,50)
+    z_c = 10.
+    yopt = 1.
+    yinf = 500.
+    df2 = {}
+    qtys = ['s','y','I_fin','yinf','I_inf'] #I denotes el-ph integral
+    for i in qtys: 
+        df2[i]=[]
+    for n,sval in enumerate(ss): 
+        integral = nag.Weak_Eph(sval, yopt, z_c) 
+        integral_inf = nag.Weak_Eph(sval, yinf, z_c) 
+        for name, val in zip(qtys, [sval,yopt,integral, yinf, integral_inf]):
+            df2[name].append(val)
+    data = pd.DataFrame(df2)
+    pd.set_option("display.max.columns",None)
+    print(data)
+    data.to_csv("./data/nak_eph_integral_wkcoupling.csv",sep=',',index=False)
 
 ###########################################################################################################################
 
@@ -535,26 +728,26 @@ def GenE_vs_a():
     '''run multiprocessing to generate energy as a function of a or y: E(a) or E(y) at a couple different values of alpha'''
     ns=[eta_STO]
     Us = [U_STO] 
-    #ns=[0.,0.01]
-    #Us = [0.1] 
-    ayes = np.geomspace(1E-5,1,100)
-    ss = [np.log(60E-9/l), np.log(5E-9/l)]
-    print(ss)
-    #ss = np.linspace(0,18,300)
-    ys = np.geomspace(0.05,50,80)
+    #ayes = np.geomspace(1E-5,1,100)
+    #ss = [np.log(60E-9/l), np.log(5E-9/l)]
+    ss = np.linspace(0,18,300)
+    #ys = np.geomspace(500,10000,300)
+    ys = [1.,1000.]
     y = 10. #500 for y->inf limit, 5-10 for finite/bipolaron/wigner crystal limit (check for numerical integration trouble)
     z_c = 10.
     a_c = 0.6
 
-    csvname = "./data/confined_STO.csv"
-    #csvname = "./data/testnak.csv"
-    #csvname = "./data/nak_E(y)_wk.csv" #nakano bipolaron for finite y
-    #csvname = "./data/nak_E(a)_inf_log.csv" #nakano bipolaron for y->inf
+    #csvname = "./data/confined_STO.csv"
+    csvname = "./data/testnak.csv"
+    #csvname = "./data/nak_E(y)_sub.csv" #nakano bipolaron for finite y
+    #csvname = "./data/nak_E(s)_sub.csv" #nakano bipolaron for y->inf
     #csvname = "./data/pol_E(a).csv" #nakano/hybrid single polaron
 
     df={}
     #quantities = ['eta','U','a','s','y','E']
-    quantities = ['eta','U','a','s','y','E', 'ainf', 'sinf', 'yinf', 'Einf', 'dE']
+    #quantities = ['eta','U','a','s','y','E', 'ainf', 'sinf', 'yinf', 'Einf', 'dE']
+    quantities = ['eta','U','a','s','y','ke','eph','coul','E','Einf', 'dE'] #constants in format E= C1 -alpha*C2 + U*C3
+
 
     for i in quantities:
         df[i]=[]
@@ -577,13 +770,16 @@ def GenE_vs_a():
             #results = pool.map(nag.min_E_bip_ayfix, job_args)
 
             #and E(sig)
-            job_args = [(n, U,z_c,a_c,s,y) for s in ss]
+            #job_args = [(n, U,z_c,a_c,s,y) for s in ss]
             #results = pool.map(nag.min_E_bip_sfix, job_args)
             #results = pool.map(nag.min_E_inf_sfix, job_args)
-            results = pool.map(nag.min_E_sfix, job_args)
-            #job_args = [(s, y, 1., n, U, z_c, a_c) for s in ss]
+            #results = pool.map(nag.min_E_sfix, job_args)
+
+            job_args = [(7., yval, 1., n, U, z_c, a_c) for yval in ys]
             #results = pool.map(nag.E_bip_aysfix, job_args)
-            
+            #display individual contributions from KE, eph, coul
+            results = pool.map(nag.FindNakConsts, job_args)
+  
             for res in results:
                 for name, val in zip(quantities, res):
                     df[name].append(val)
@@ -595,7 +791,7 @@ def GenE_vs_a():
     print(data)
     data.to_csv(csvname,sep=',',index=False)
 
-    Plot_E_vs_a(csvname,'s',logplot=0, plotdE=True)
+    Plot_E_vs_a(csvname,'y',logplot=1, plotdE=False)
 
 def GenE_vs_eta_y_fixedU(generate = False):
     '''Generate a) an E vs eta plot at fixed U, plotting the bipolaron and 2*polaron energies; b) a plot of E(y) at different values of eta corresponding to regions before, slightly past, and far past the crossover value of binding eta_c to illustrate stable, metastable, and no minima at strong coupling'''
@@ -937,21 +1133,30 @@ def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, realval = False,log
                 b = '-dE'
                 ylist = -ylist
         else:
+            #Einf = np.array([-(1-n)*U for n,U in zip(df['eta'].values,df['U'].values)])
+            #df['dE'] = (df['E'].values-Einf)/np.abs(Einf)
             val, fixed_x, fixed_ys = ps.FindArrs(df, colnames, fixedqty, val)
             ylist = fixed_ys[0]
-            if len(filenames) > 0:
-                df2 = pd.read_csv(filenames[1])
-                _,fixed_x2, fixed_y2 = ps.FindArrs(df2, colnames, fixedqty, val)
-                ylist2 = fixed_y2[0]
-                ax.plot(fixed_x2, ylist2,label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
-
+            if len(filenames) > 1:
+                for i,name in enumerate(filenames[1:]):
+                    df2 = pd.read_csv(name)
+                    _,fixed_x2, fixed_y2 = ps.FindArrs(df2, colnames, fixedqty, val)
+                    ylist2 = fixed_y2[0]
+                    ax.plot(fixed_x2, ylist2,label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
+        if a == 'eta': ax.axvline(0.00158, c='red')
         if fixedqty == 'eta': fixedqty = '\\' + fixedqty
 
     if logplot == 3:
         #print(list(zip(np.log10(fixed_x),ylist)))
         if b == 'dE': 
-            b = '|dE|'
-            ylist = np.abs(ylist)
+            if val > 0:
+                b = '|\Delta E|'
+                ylist = np.abs(ylist)
+            else: #eta = 0
+                b = '|\Delta E|'
+                ylist = np.abs(ylist)
+                #b = '-\Delta E'
+                #ylist = -ylist
         if a == 's':
             a = '\\tilde \sigma'
         logx = np.log10(fixed_x)
@@ -1033,6 +1238,7 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
         colnames[-1] = 'dE'
 
     #else dE is already a column name
+
     ns, Us, Zbind = ps.parse_CSV(df,colnames)
     a,b,c = colnames
     print(Zbind.min())
@@ -1148,8 +1354,8 @@ def Check_Einf_Integrand(y,s,a):
 def PoolParty(csvname):
     '''run multiprocessing to generate energy CSV for range of alpha vals'''
     #zoom in on weak-coupling regime
-    #ns=np.linspace(0,0.095,50)
-    #Us = np.geomspace(1E-5,15,70)
+    ns=np.linspace(0,0.095,50)
+    Us = np.geomspace(1E-5,15,70)
 
     #For E vs alpha plots
     #ns = [0.,0.05]
@@ -1163,8 +1369,8 @@ def PoolParty(csvname):
     #Us = np.linspace(10,50,200) #originally lower bound was 0.001
 
     #spherically symmetric wfn
-    ns=np.linspace(0,0.08,30)
-    Us = np.linspace(10,50,50) #originally lower bound was 0.001
+    #ns=np.linspace(0,0.08,30)
+    #Us = np.linspace(10,50,50) #originally lower bound was 0.001
     
     #STO, KTO, PbS, PbSe, PbTe, SnTe, GeTe
     #ns = [eta_STO, etaKTO, 9.05E-2, 8.18E-2, 8.26E-2, 3.75E-2, 8E-2]
@@ -1176,8 +1382,8 @@ def PoolParty(csvname):
     a_c = 0.6 #dividing a value
 
     df={}
-    quantities = ['eta','U','a','s','y','E']
-    #quantities = ['eta','U','a','s','y','E', 'ainf', 'sinf', 'yinf', 'Einf', 'dE']
+    #quantities = ['eta','U','a','s','y','E']
+    quantities = ['eta','U','a','s','y','E', 'ainf', 'sinf', 'yinf', 'Einf', 'dE']
     #quantities = ['eta','U','Omega','Omega1','E','Einf','Ebinding'] #Devreese
 
     for i in quantities:
@@ -1192,8 +1398,7 @@ def PoolParty(csvname):
         #results = pool.map(nag.min_sym_E, job_args) #radially symmetric wave function
         #results = pool.map(nag.min_sym_E_inf, job_args) #radially symmetric wave function
         #results = pool.map(nag.min_E_avar_inf, job_args) #gives same answer as just fixing a at a=0 or a=1
-        #results = pool.map(nag.min_E_inf, job_args)
-        #results = pool.map(nag.min_E_nak, job_args)
+        results = pool.map(nag.min_E_nak, job_args)
         #results = pool.map(nag.min_E_nak_strong, job_args)
         #results = pool.map(nag.min_E_nak_weak, job_args)
 
@@ -1456,11 +1661,11 @@ if __name__ == '__main__':
     csvname_sym_inf = "./data/nak_symwfn_inf.csv"
 
     #FFT(a=0.1,y=0,s=1,opt='nak',ext='.eps')
-    #f_r_special()
+   #f_r_special()
     #DensityPlot3D()
 
-    #PoolParty(csvname_sym_inf)
-    #E_binding(csvname_sym, csvname_sym_inf, colnames=['eta','U','dE'], realval = False, point=True)
+    #PoolParty(csvname1m)
+    #E_binding('./data/nakano_wkPD_s12_loglog.csv', './data/nakano_wkPD_s12_loglog.csv', colnames=['eta','U','dE'], realval = False, point=True)
     #PlotE(csvname3, fit=False, opt='', multiplot=True)
 
     #GenE_vs_a()
@@ -1470,11 +1675,23 @@ if __name__ == '__main__':
     #FormatPhaseDia(csvname1g, csvname1h)
     #GenE_vs_eta_y_fixedU(False)
 
-    PlotAtFixedVal([csvname_sym, csvname1l], colnames=['U','E'], fixedqty='eta', fixedvals=[0.])
+    #PlotAtFixedVal([csvname_sym, csvname1l], colnames=['U','E'], fixedqty='eta', fixedvals=[0.])
     
     #plot loglog plots to look at large-sigma behavior
     #PlotAtFixedVal(["./data/testnak.csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.01], logplot=3,fit=True, yfit=(-10,-7))
+    #PlotAtFixedVal(["./data/nak_E(s).csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.01], logplot=3,fit=True, xfit=(3,7))
     #PlotAtFixedVal(["./data/testnak.csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.], logplot=3, fit=True, yfit=(-14,-4))
+    #PlotAtFixedVal(["./data/nak_E(s).csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.], logplot=3, fit=True, xfit=(3,7))
+    #PlotAtFixedVal(["./data/nak_E(s)_sub.csv"], colnames=['s','E'], fixedqty='eta', fixedvals=[0.], logplot=1, fit=True, xfit=(3,7))
+    #PlotAtFixedVal(["./data/nak_E(s)_sub.csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.], logplot=3, fit=True, xfit=(3,7))
+
+    #PlotAtFixedVal(["./data/nak_E(s)_sub.csv"], colnames=['s','E'], fixedqty='eta', fixedvals=[0.01], logplot=1, fit=True, xfit=(4,8))
+    #PlotAtFixedVal(["./data/nak_E(s)_sub.csv"], colnames=['s','Einf'], fixedqty='eta', fixedvals=[0.01], logplot=1, fit=True, xfit=(4,8))
+    #PlotAtFixedVal(["./data/nak_E(s)_sub.csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.01], logplot=3, fit=True, xfit=(4,8))
+
+    #PlotAtFixedVal(["./data/nak_E(y).csv"], colnames=['y','E'], fixedqty='eta', fixedvals=[0.], logplot=1, fit=False, xfit=(3,7))
+    #PlotAtFixedVal(["./data/nak_E(y)_sub.csv"], colnames=['y','E'], fixedqty='eta', fixedvals=[0.], logplot=1, fit=False, xfit=(3,7))
     #eta_c_vs_U(generate=False, fit='ex', yfit=(-1.4,-1.1)) 
 
-    #FormatWeakPD(generate=False)
+    #FindIntegral()
+    FormatWeakPD(generate=False,loglog=True, findconst=False,alt=True)

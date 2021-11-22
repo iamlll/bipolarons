@@ -336,11 +336,13 @@ def Weak_E(tuple args):
     cdef double Eph = -(1-args[0])*args[1]*args[4]
     cdef double Eopt = KE + coul + Eph
     cdef double KE_inf = 3*exp(-2*args[2]) 
-    cdef double coul_inf = args[1]* exp(-args[2])/args[3]
-    cdef double Eph_inf = -(1-args[0])*args[1]*args[6]
-    cdef double Einf = KE_inf + coul_inf + Eph_inf
-    return args[0],args[1],1,args[2],args[3], Eopt, args[5], Einf, (Eopt - Einf)/abs(Einf)
-     
+    #cdef double coul_inf = args[1]* exp(-args[2])/args[5]
+    #cdef double Eph_inf = -(1-args[0])*args[1]*args[6]
+    #cdef double Einf = KE_inf + coul_inf + Eph_inf
+    cdef double Einf = KE_inf -(1-args[0])*args[1] #try writing Einf = KE - 2alpha as "true" infinitely separated soln (sigma finite, y ->inf)
+    #This is justified on physical grounds since we expect the y->inf energy to be exactly twice that of the single polaron energy (KE - alpha)
+    return args[0],args[1],1,exp(args[2]),args[3], Eopt, args[5], Einf, (Eopt - Einf)/abs(Einf)
+
 ##########################################################################################################################################################
 
 def E_bip_ln(np.ndarray[double, ndim=1] x, double n, double U, double z_c, double a_c):
@@ -660,6 +662,14 @@ def min_E_nak(tuple args):
     cdef double Ebind = (resfin[-1] - resinf[-1])/abs(resinf[-1])
     return resfin + resinf[2:] + (Ebind,)
 
+def min_E_nak_phys(tuple args):
+    '''Wrapper function for energy minimization in Nakano formulation, using the physical intuition/definition of E_inf as twice the single polaron binding energy, E_inf = 3/(4*sigma^2) - (el-ph: 2alpha for wk coupling, alpha^2 for strong)'''
+    cdef tuple resfin = min_E_bip_ln2(args)
+    cdef tuple resinf = min_E_inf(args)
+    #return n, U, all finite optimization quantities, all y->inf optimization quantities, and the relative binding energy (E_opt - E_inf)/|E_inf|
+    cdef double Ebind = (resfin[-1] - resinf[-1])/abs(resinf[-1])
+    return resfin + resinf[2:] + (Ebind,)
+
 def min_E_nak_strong(tuple args):
     '''Wrapper function for strong-coupling limit energy minimization in Nakano formulation'''
 
@@ -699,12 +709,13 @@ def E_bip_aysfix(tuple x):
     return x[3],x[4],x[2],exp(x[0]),x[1], KE + e_ph + coul
 
 def E_inf_aysfix(tuple x):
-    '''bipolaron energy normalized by KE = hw with fixed a; correct for finite y bias by subtracting off the screened Coulomb interaction eta*U/(sigma*y)
+    '''bipolaron energy normalized by KE = hw with fixed a
         Inputs:
             args = x = (s, y, a, n, U, z_c, a_c)
     '''
-    cdef double KE = exp(-2*x[0]) * (3 - pow(x[1],2)/2* 1./ (1 + exp(pow(x[1],2)/2)) )
-    cdef double coul = x[4]*(1-x[3])* exp(-x[0])/x[1]
+    #cdef double KE = exp(-2*x[0]) * (3 - pow(x[1],2)/2* 1./ (1 + exp(pow(x[1],2)/2)) )
+    cdef double KE = exp(-2*x[0]) * 3
+    cdef double coul = x[4]* exp(-x[0])/x[1]
     cdef double e_ph = Eph_ln(x[0],x[2], x[1], x[3], x[4], x[5],x[6])
     return x[3],x[4],x[2],exp(x[0]),x[1], KE + e_ph + coul
 

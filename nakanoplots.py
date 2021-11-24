@@ -522,8 +522,8 @@ def FitData(xvals, yvals, varnames, guess=[-1,-3],yerr=[], fit='lin', extrap=[])
     
     textstr = '\n'.join((
         r'$%s(%s) = a%s + b$' % (Y, X, X),
-        r'$a=%.3f \pm %.3f$' % (a, aerr),
-        r'$b=%.3f \pm %.3f$' % (b, berr)
+        r'$a=%.7f \pm %.7f$' % (a, aerr),
+        r'$b=%.6f \pm %.6f$' % (b, berr)
         ))
 
     print(r'$b=%.4f \pm %.4f$' % (b, berr))
@@ -1232,10 +1232,10 @@ def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, realval = False,log
             ax.text(0.05, 0.25, textstr, transform=ax.transAxes, fontsize=14,
                 verticalalignment='top')
 
-        ax.set_ylabel('$\log (' + b + ')$')
+        ax.set_ylabel('$\ln (' + b + ')$')
         if a == 'eta': a = "\\" + a
         elif a == 's': a = "\sigma"
-        ax.set_xlabel('$\log(' + a + ')$')
+        ax.set_xlabel('$\ln(' + a + ')$')
         ax.legend()
     else:
         ax.plot(fixed_x, ylist,label= '$' + b + '$, $' + fixedqty + ' = $%.3f' %val)
@@ -1252,7 +1252,7 @@ def PlotAtFixedVal(filenames, colnames, fixedqty, fixedvals, realval = False,log
         ax.legend()
     if len(xlim) > 0:
         if logplot == 3:
-            ax.set_xlim(np.log10(xlim[0]),np.log10(xlim[1]))
+            ax.set_xlim(np.log(xlim[0]),np.log(xlim[1]))
         else: ax.set_xlim(xlim[0],xlim[1])
         
 
@@ -1323,20 +1323,21 @@ def E_binding(filename1, filename2, colnames,xlims=(),ylims=(),zlims=(),save=Fal
 
     #Plot various material param values
     if point == True: 
+        #formatted to show up correctly in .eps file format; .png will look a bit off
         ax.plot(eta_STO,U_STO,color='black',marker='.') #STO, strontium titanate
-        ax.annotate('STO', (eta_STO, U_STO), xytext=(8, -8), textcoords='offset pixels')
+        ax.annotate('STO', (eta_STO, U_STO), xytext=(6, -6), textcoords='offset pixels')
         ax.plot(etaKTO,UKTO,color='black',marker='.') #KTO, potassium tantalate
-        ax.annotate('KTO', (etaKTO, UKTO), xytext=(8, -8), textcoords='offset pixels')
+        ax.annotate('KTO', (etaKTO, UKTO), xytext=(6, -6), textcoords='offset pixels')
         ax.plot(9.05E-2, 2.6 ,color='black',marker='.') #PbS Lead sulfide, alloy
-        ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-25, 15), textcoords='offset pixels')
+        ax.annotate('PbS', (9.05E-2, 2.6), xytext=(-18, 6), textcoords='offset pixels')
         ax.plot(8.18E-2, 2.58,color='black',marker='.') #PbSe Lead selenide
-        ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-40, 10), textcoords='offset pixels')
+        ax.annotate('PbSe', (8.18E-2, 2.58), xytext=(-28, 5), textcoords='offset pixels')
         ax.plot(8.26E-2, 1.87,color='black',marker='.') #PbTe Lead telluride
-        ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(6, -25), textcoords='offset pixels')
+        ax.annotate('PbTe', (8.26E-2, 1.87), xytext=(4, -9), textcoords='offset pixels')
         ax.plot(3.75E-2, 3.12,color='black',marker='.') #SnTe Tin telluride
-        ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(8, 0), textcoords='offset pixels')
+        ax.annotate('SnTe', (3.75E-2, 3.12), xytext=(6, 0), textcoords='offset pixels')
         ax.plot(8E-2, 0.47,color='black',marker='.') #GeTe Germanium telluride
-        ax.annotate('GeTe', (8E-2, 0.47), xytext=(-70,-20), textcoords='offset pixels')
+        ax.annotate('GeTe', (8E-2, 0.47), xytext=(-27,-10), textcoords='offset pixels')
 
     #plot binding energy = 0 contour
     #zerocont = ax.contour(ns, Us, Zbind, [0.], colors=('r',), linewidths=(1,), origin='lower') #plot dE = 0 curve
@@ -1724,7 +1725,6 @@ if __name__ == '__main__':
     #Plot_E_vs_a("./data/testnak.csv",xvar='s',logplot=0, plotdE=True)
     #plotContour(csvname1b, colnames=['eta','U','E'],zlims=(), save=False, minmax=5,logplot=0)
     #FormatPhaseDia(csvname1g, csvname1h)
-    #GenE_vs_eta_y_fixedU(False)
     
     #plot loglog plots to look at large-sigma behavior
     #PlotAtFixedVal(["./data/testnak.csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.01], logplot=3)
@@ -1743,13 +1743,14 @@ if __name__ == '__main__':
     #FindIntegral()
 
     '''PAPER PLOTS'''
-    #E_binding(csvname1l, csvname1l, colnames=['eta','U','dE'], realval = False,point=True) #Fig 1, full phase diagram 
+    E_binding(csvname1l, csvname1l, colnames=['eta','U','dE'], realval = False,point=True) #Fig 1, full phase diagram 
 
     #PlotE(csvname3, fit=False, opt='', multiplot=True) #use to create multiplot phase diagram, Fig 3
-    #PlotE('./data/nakano_yfin_U40.csv', fit=False, opt='fin', multiplot=False) #plot energy comparison between E_opt, E_inf, Devreese
-    #PlotAtFixedVal([csvname_sym, "./data/gauss_U40.csv"], colnames=['U','E'], fixedqty='eta', fixedvals=[0.],xlim=(10,40),labels=['sym','gaus'],logplot=3) #plot symmetric wfn results against Gaussian (a=0) result to show that symmetry breaking wfn super beats out a symmetric solution
-    #FormatWeakPD(generate=True,loglog=True, findconst=False,alt=True) #weak coupling phase diagram with lines of constant sigma
-    #LgSigma(False) #plot behavior of binding energy as a function of sigma - show attraction for eta = 0 (complete cancellation of Coulomb), incomplete cancellation for eta > 0 (dies as 1/sigma)
+    #PlotE('./data/nakano_yfin_U40.csv', fit=False, opt='fin', multiplot=False) #plot energy comparison between E_opt, E_inf, Devreese, Fig 5
+    #PlotAtFixedVal([csvname_sym, "./data/gauss_U40.csv"], colnames=['U','E'], fixedqty='eta', fixedvals=[0.],xlim=(10,40),labels=['sym','gaus'],logplot=3) #plot symmetric wfn results against Gaussian (a=0) result to show that symmetry breaking wfn super beats out a symmetric solution, Fig. 6
+    #FormatWeakPD(generate=True,loglog=True, findconst=False,alt=True) #weak coupling phase diagram with lines of constant sigma; Figs. 1b, 9
+    #LgSigma(False) #plot behavior of binding energy as a function of sigma - show attraction for eta = 0 (complete cancellation of Coulomb), incomplete cancellation for eta > 0 (dies as 1/sigma), Fig. 7
+    #GenE_vs_eta_y_fixedU(False) #Fig 4
     #PoolParty(csvname1n)
     #E_binding(csvname1n, csvname1n, colnames=['eta','U','dE'], realval = False, point=True) 
 

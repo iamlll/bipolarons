@@ -27,8 +27,8 @@ elec = 1.602E-19*2997924580 #convert C to statC
 hbar = 1.054E-34 #J*s
 m = 9.11E-31 #kg
 w = 0.1*1.602E-19/hbar
-epssr = 23000
-epsinf = 2.394**2
+epssr = 23000 #of the material, exptly measured static dielectric const at 0 freq
+epsinf = 2.394**2 #optical dielectric const = (index of refraction)**2
 conv = 1E-9/1.602E-19 #convert statC (expressions with elec^2) to eV
 convJ = 1/1.602E-19 #convert J to eV
 eta_STO = epsinf/epssr
@@ -422,6 +422,17 @@ def FormatWeakPD(generate=True, point=True, loglog=False, findconst=False, alt=F
         ns, Us, Zbind = ps.parse_CSV(df,['eta','U','dE'])
         ax.semilogy()
 
+        #plot a colored contour plot of one of the fixed sigma vals to check that binding is permitted below the dE=0 curve (not above)
+        '''
+        if n == len(ss)-1:
+            fig2,axx = plt.subplots()
+            s8cp = axx.contourf(ns, Us, Zbind) #plot s = 8 contour plot
+            cbar2=fig2.colorbar(s8cp) # Add a colorbar to a plot
+            axx.set_xscale('log')
+            axx.set_yscale('log')
+            plt.show()
+        '''
+
         #plot binding energy = 0 contour
         zerocont = ax.contour(ns, Us, Zbind, [0.], colors=(colors[n],), linewidths=(1,), linestyles=(styles[n],), origin='lower') #plot dE = 0 curve
         e0,u0 = ps.FindCoords(zerocont)
@@ -499,6 +510,52 @@ def FormatWeakPD(generate=True, point=True, loglog=False, findconst=False, alt=F
             ax.set_xlim(left=2E-4)
     plt.tight_layout()
     plt.show()
+
+def FindMatParams(constrained=True):
+    elems = ['STO','KTO','PbS','PbSe','PbTe','SnTe','GeTe']
+    ns = [eta_STO, etaKTO, 9.05E-2, 8.18E-2, 8.26E-2, 3.75E-2, 8E-2]
+    Us = [U_STO, UKTO, 2.6, 2.58, 1.87, 3.12, 0.47] 
+    z_c = 10.
+    yopt = 1.
+    yinf = 500.
+    k_B = 1.380649E-23 #J/K, Boltzmann constant
+    csvname = './data/nak_mats_constrained.csv' 
+ 
+    if constrained:
+        # Cheng et al. 2015 used 5 nm nanowires - convert to sigma/l = \tilde sigma:
+        sig = [5E-9,60E-9]/l
+        ss = np.log(sig)
+        #specified max sigma value, do extrinsically constrained bipolaron calc
+        df = {}
+        quantities = ['eta','U','a','sig','y','E', 'yinf', 'Einf', 'dE']
+        for n,sval in enumerate(ss): 
+            print(sval)
+            df['matname'] = []
+            
+            for i in quantities: 
+                df[i]=[]
+
+            integral = nag.Weak_Eph(sval, yopt, z_c) 
+            integral_inf = nag.Weak_Eph(sval, yinf, z_c) 
+
+            tic = time.perf_counter()
+            with multiprocessing.Pool(processes=4) as pool:
+                job_args = [(nval,u,sval, yopt, integral, yinf, integral_inf) for nval,u in zip(ns,Us)]
+                results = pool.map(nag.Weak_E, job_args)
+                
+                for i,res in enumerate(results):
+                    df['matname'].append(elems[i])
+                    for name, val in zip(quantities, res):
+                        df[name].append(val)
+ 
+            df['dE_real'] = df['dE']*np.abs(df['Einf'])* 0.1  #binding energy in real units, found from dE*abs(Einf)* (hbar w), hbar w = 100 meV for the dominant LO mode in STO. Units of eV
+            df['Tp'] = df['dE_real']/(k_B*convJ) #preformed pairing temp estimate, found from dE = k_B T_p. Need to convert J to eV
+                    
+            toc = time.perf_counter()
+            print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
+            data = pd.DataFrame(df)
+            data.to_csv(csvname,sep=',',index=False)
+            print(data)
 
 def FitData(xvals, yvals, varnames, guess=[-1,-3],yerr=[], fit='lin', extrap=[]):
     def fitlinear(x,a,b):
@@ -1703,7 +1760,7 @@ if __name__ == '__main__':
     csvname3c = './data/nakano_U20_str.csv' #strong coupling soln only
     csvname3d = './data/nakano_U40_wk.csv' #strong coupling soln only
     csvname4 = './data/devreese1.csv' #strong coupling soln only
-    csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found
+    csvname_mat = './data/nak_mats.csv' #optimized params for various materials where bipolarons might be found -- this particular run (using PoolParty) lets sigma optimize freely (so corresponds to s=148). Need to generate data for s = 8?
     csvname_mat_inf = './data/nak_mats_inf.csv' #optimized params (y->inf) for various materials where bipolarons might be found
     csvname_su_fin2 = './data/nak_smallU_yfin.csv'
     csvname_su_inf2 = './data/nak_smallU_yinf.csv'
@@ -1743,7 +1800,7 @@ if __name__ == '__main__':
     #FindIntegral()
 
     '''PAPER PLOTS'''
-    E_binding(csvname1l, csvname1l, colnames=['eta','U','dE'], realval = False,point=True) #Fig 1, full phase diagram 
+    #E_binding(csvname1l, csvname1l, colnames=['eta','U','dE'], realval = False,point=True) #Fig 1, full phase diagram 
 
     #PlotE(csvname3, fit=False, opt='', multiplot=True) #use to create multiplot phase diagram, Fig 3
     #PlotE('./data/nakano_yfin_U40.csv', fit=False, opt='fin', multiplot=False) #plot energy comparison between E_opt, E_inf, Devreese, Fig 5
@@ -1757,3 +1814,6 @@ if __name__ == '__main__':
     #GenE_vs_a()
     #PlotAtFixedVal(["./data/nak_E(s).csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.01], logplot=3,fit=True, xfit=(8,14))
     #PlotAtFixedVal(["./data/nak_E(s).csv"], colnames=['s','dE'], fixedqty='eta', fixedvals=[0.], logplot=3, fit=True, xfit=(10,15))
+
+    #Find material parameters
+    FindMatParams()

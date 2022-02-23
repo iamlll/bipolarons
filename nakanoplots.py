@@ -527,14 +527,12 @@ def FindMatParams(constrained=True):
         ss = np.log(sig)
         #specified max sigma value, do extrinsically constrained bipolaron calc
         df = {}
+        df['matname'] = []
         quantities = ['eta','U','a','sig','y','E', 'yinf', 'Einf', 'dE']
+        for i in quantities: 
+            df[i]=[]
         for n,sval in enumerate(ss): 
             print(sval)
-            df['matname'] = []
-            
-            for i in quantities: 
-                df[i]=[]
-
             integral = nag.Weak_Eph(sval, yopt, z_c) 
             integral_inf = nag.Weak_Eph(sval, yinf, z_c) 
 
@@ -547,15 +545,14 @@ def FindMatParams(constrained=True):
                     df['matname'].append(elems[i])
                     for name, val in zip(quantities, res):
                         df[name].append(val)
- 
-            df['dE_real'] = df['dE']*np.abs(df['Einf'])* 0.1  #binding energy in real units, found from dE*abs(Einf)* (hbar w), hbar w = 100 meV for the dominant LO mode in STO. Units of eV
-            df['Tp'] = df['dE_real']/(k_B*convJ) #preformed pairing temp estimate, found from dE = k_B T_p. Need to convert J to eV
                     
-            toc = time.perf_counter()
-            print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
-            data = pd.DataFrame(df)
-            data.to_csv(csvname,sep=',',index=False)
-            print(data)
+        toc = time.perf_counter()
+        print(f"time taken: {toc-tic:0.4f} s, {(toc-tic)/60:0.3f} min")
+        data = pd.DataFrame(df)
+        data['dE_real'] = df['dE']*np.abs(df['Einf'])* 0.1  #binding energy in real units, found from dE*abs(Einf)* (hbar w), hbar w = 100 meV for the dominant LO mode in STO. Units of eV
+        data['Tp'] = data['dE_real']/(k_B*convJ) #preformed pairing temp estimate, found from dE = k_B T_p. Need to convert J to eV
+        data.to_csv(csvname,sep=',',index=False)
+        print(data)
 
 def FitData(xvals, yvals, varnames, guess=[-1,-3],yerr=[], fit='lin', extrap=[]):
     def fitlinear(x,a,b):
